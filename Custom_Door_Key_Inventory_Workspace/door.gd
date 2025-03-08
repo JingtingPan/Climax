@@ -1,7 +1,13 @@
 extends Node2D
 
+#default initialization:
+#door is locked, player is not near
 @export var locked: bool = true
 var player_near: bool = false
+var InventoryDisplayScript = preload("res://Custom_Door_Key_Inventory_Workspace/inventory_display_control.gd")
+@onready var inventory_display = $Inventory_Display_Control
+
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,21 +20,13 @@ func unlock():
 	$Sprite_Locked_Door.hide()
 	$Sprite_Opened_Cavity.show()
 	show_item()
-	inventory_add(item_name)
+	inventory_display.add_to_inventory("test item name")
 	
 	
 func show_item():
 	$Item_Node2D.show()
 	await get_tree().create_timer(2).timeout
 	$Item_Node2D.hide()
-
-func inventory_add(item_name):	
-	pass
-	#add 1 to dictionary key matching item name
-	#Note: Inventory dict should be initialized to:
-	#{"key":0,"memory_fragment":0}
-	
-	#possible sound effect
 	
 func _on_DoorArea_Area2d_body_entered(body):
 	#Insert if statement header such as:
@@ -40,7 +38,7 @@ func _on_DoorArea_Area2d_body_entered(body):
 func _process(delta: float) -> void:
 	#"interact" in line below is a placeholder
 	# player could press q or something
-	if player_near and Input.is_action_just_pressed(interact):
+	if player_near and Input.is_action_just_pressed("KEY_Q"):
 		if not locked:
 			unlock()
 	

@@ -5,7 +5,6 @@
 
 [node name="Door_Inventory_Items_Workspace" type="Node2D"]
 script = ExtResource("1_evuxy")
-locked = null
 
 [node name="Door" type="Node2D" parent="."]
 
@@ -25,7 +24,6 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("2_gfsp0")
-inventory_dict = null
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Inventory_Display_Control"]
 layout_mode = 0
