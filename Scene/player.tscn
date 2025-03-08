@@ -154,7 +154,7 @@ scale = Vector2(0.02, 0.02)
 sprite_frames = SubResource("SpriteFrames_hjs6w")
 animation = &"die"
 autoplay = "idle"
-frame_progress = 0.653435
+frame_progress = 0.681316
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 3)
