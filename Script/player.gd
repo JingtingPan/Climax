@@ -8,19 +8,18 @@ extends CharacterBody2D
 @export var animator : AnimatedSprite2D
 # Called when the node enters the scene tree for the first time.
 
+var is_attacked = false 
 var is_falling_through = false
 var is_dashing = false
 var can_dash = true  # is the player eligible for dashing
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
-	
 	apply_gravity(delta)
 	handle_movement()
 	handle_jump()
 	handle_platform_pass_through()
 	handle_dash()
-	
 	update_animation()
 	move_and_slide()
 	
@@ -93,3 +92,17 @@ func disable_platform_collision():
 func enable_platform_collision():
 	# turn off collision between player and platform
 	set_collision_mask_value(2, true)
+	
+#player engaged with enemy
+func player_attacked():
+	if is_attacked:
+		return # avoid multiple attack
+	is_attacked = true
+	set_physics_process(false)  # ban physics
+	velocity = Vector2.ZERO
+	animator.play("die")
+	
+	await get_tree().create_timer(1).timeout  # wait time until player can move again
+	is_attacked = false
+	animator.play("idle")
+	set_physics_process(true)  # reactivate physics

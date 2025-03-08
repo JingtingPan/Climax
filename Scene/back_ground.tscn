@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=4 uid="uid://cgn5v438ay7my"]
+[gd_scene load_steps=6 format=4 uid="uid://cgn5v438ay7my"]
 
 [ext_resource type="Texture2D" uid="uid://bvsvm7e1kkjdm" path="res://stringstar fields/background_0.png" id="1_eordj"]
 [ext_resource type="PackedScene" uid="uid://behcq23q1xbhb" path="res://Scene/player.tscn" id="2_116po"]
 [ext_resource type="PackedScene" uid="uid://hnvfxbff52lm" path="res://Scene/platform.tscn" id="3_lik8c"]
+[ext_resource type="PackedScene" uid="uid://c3cstmmt2qdkk" path="res://Scene/enemy.tscn" id="4_n0f63"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2kvn4"]
 
@@ -20,11 +21,46 @@ metadata/_edit_lock_ = true
 gravity = 800.0
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(0, 33)
+position = Vector2(0, 50)
+collision_layer = 4
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(0.5, 35)
 shape = SubResource("WorldBoundaryShape2D_2kvn4")
 
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(106, 1)
+rotation = -1.56916
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0.5, 35)
+shape = SubResource("WorldBoundaryShape2D_2kvn4")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-105, 0)
+rotation = 1.57681
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0.5, 35)
+shape = SubResource("WorldBoundaryShape2D_2kvn4")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(0, -46)
+rotation = -3.14143
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(0.5, 35)
+shape = SubResource("WorldBoundaryShape2D_2kvn4")
+
 [node name="TileMapLayer" parent="." instance=ExtResource("3_lik8c")]
-tile_map_data = PackedByteArray("AAD//wEAAAABAAEAAAAAAAEAAAABAAEAAAABAAEAAAABAAEAAAADAAAAAAABAAEAAAAEAAAAAAABAAEAAAAGAAAAAAABAAEAAAAFAAAAAAABAAEAAAD4/wEAAAABAAEAAAD5/wEAAAABAAEAAAD6/wEAAAABAAEAAAA=")
+tile_map_data = PackedByteArray("AAD//wEAAAABAAEAAAAAAAEAAAABAAEAAAABAAEAAAABAAEAAAADAAAAAAABAAEAAAAEAAAAAAABAAEAAAAGAAAAAAABAAEAAAAFAAAAAAABAAEAAAD4/wEAAAABAAEAAAD5/wEAAAABAAEAAAD6/wEAAAABAAEAAAD8////AAABAAEAAAD8//7/AAABAAEAAAD8//3/AAABAAEAAAA=")
+
+[node name="enemy" parent="." instance=ExtResource("4_n0f63")]
+position = Vector2(81, -35)
