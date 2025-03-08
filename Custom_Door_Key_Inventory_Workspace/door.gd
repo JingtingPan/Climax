@@ -4,9 +4,12 @@ extends Node2D
 #door is locked, player is not near
 @export var locked: bool = true
 var player_near: bool = false
+
 var InventoryDisplayScript = preload("res://Custom_Door_Key_Inventory_Workspace/inventory_display_control.gd")
 @onready var inventory_display = $Inventory_Display_Control
 
+var ItemNodeScript = preload("res://Custom_Door_Key_Inventory_Workspace/item_node_2d.gd")
+@onready var item = $Door/Item_Node2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -20,17 +23,17 @@ func unlock():
 	$Sprite_Locked_Door.hide()
 	$Sprite_Opened_Cavity.show()
 	show_item()
-	inventory_display.add_to_inventory("test item name")
+	item.collect()
 	
-	
+
 func show_item():
 	$Item_Node2D.show()
 	await get_tree().create_timer(2).timeout
-	$Item_Node2D.hide()
+	
 	
 func _on_DoorArea_Area2d_body_entered(body):
 	#Insert if statement header such as:
-	#if body.name = "Player":
+	#if body.name = player_name
 	player_near = true
 
 
