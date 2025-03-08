@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=4 uid="uid://cgn5v438ay7my"]
+
+[ext_resource type="Texture2D" uid="uid://bvsvm7e1kkjdm" path="res://stringstar fields/background_0.png" id="1_eordj"]
+[ext_resource type="PackedScene" uid="uid://behcq23q1xbhb" path="res://Scene/player.tscn" id="2_116po"]
+[ext_resource type="PackedScene" uid="uid://hnvfxbff52lm" path="res://Scene/platform.tscn" id="3_lik8c"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2kvn4"]
+
+[node name="BackGround" type="Node2D"]
+
+[node name="bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_eordj")
+metadata/_edit_lock_ = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4.03, 4.03)
+metadata/_edit_lock_ = true
+
+[node name="player" parent="." instance=ExtResource("2_116po")]
+gravity = 800.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 33)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 35)
+shape = SubResource("WorldBoundaryShape2D_2kvn4")
+
+[node name="TileMapLayer" parent="." instance=ExtResource("3_lik8c")]
+tile_map_data = PackedByteArray("AAD//wEAAAABAAEAAAAAAAEAAAABAAEAAAABAAEAAAABAAEAAAADAAAAAAABAAEAAAAEAAAAAAABAAEAAAAGAAAAAAABAAEAAAAFAAAAAAABAAEAAAD4/wEAAAABAAEAAAD5/wEAAAABAAEAAAD6/wEAAAABAAEAAAA=")
