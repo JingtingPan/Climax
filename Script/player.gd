@@ -6,20 +6,29 @@ extends CharacterBody2D
 @export var dashSpeed : float = 300
 @export var dash_duration: float = 0.2
 @export var animator : AnimatedSprite2D
+@export var climb_speed : float = 100
 # Called when the node enters the scene tree for the first time.
 
 var is_attacked = false 
 var is_falling_through = false
 var is_dashing = false
+var is_climbing = false
 var can_dash = true  # is the player eligible for dashing
+
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
-	apply_gravity(delta)
-	handle_movement()
-	handle_jump()
-	handle_platform_pass_through()
-	handle_dash()
+	if is_climbing:
+		handle_climbing(delta)
+		handle_jump()
+	else:
+		apply_gravity(delta)
+		handle_movement()
+		handle_jump()
+		handle_platform_pass_through()
+		handle_dash()
+	
 	update_animation()
 	move_and_slide()
 	
@@ -40,11 +49,30 @@ func handle_movement():
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
+	
+func handle_climbing(delat: float):
+	velocity.x = 0  # no horizontal speed
+	if Input.is_action_pressed("up"):
+		velocity.y = -climb_speed  # climb up
+		if not animator.is_playing() or animator.animation != "climb":
+			animator.play("climb")  # 播放攀爬动画
+	elif Input.is_action_pressed("down"):
+		velocity.y = climb_speed  # climb down
+		if not animator.is_playing() or animator.animation != "climb":
+			animator.play("climb")  # 播放攀爬动画
+	else:
+		velocity.y = 0  # stop climbing
+		if not animator.is_playing() or animator.animation != "climb":
+			animator.stop()
+
 # jump
 func handle_jump():
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = -jump_force
-		can_dash = true # reset dash
+	if is_on_floor() or is_climbing:
+		if Input.is_action_just_pressed("jump"):
+			velocity.y = -jump_force
+			can_dash = true # reset dash
+			if is_climbing:
+				is_climbing = false
 		
 # dash while in the air
 func handle_dash():
@@ -63,10 +91,12 @@ func start_dash():
 	
 	stop_dash()
 
+
 func stop_dash():
 	is_dashing = false
 	velocity.x = 0  # Dash 结束后停止
-	
+
+
 # player pass through platform
 func handle_platform_pass_through():
 	if Input.is_action_just_pressed("down") and is_on_floor():
@@ -80,6 +110,9 @@ func handle_platform_pass_through():
 func update_animation():
 	if is_dashing:
 		animator.play("dash")
+	elif is_climbing:
+		if not animator.is_playing() or animator.animation != "climb":
+			animator.play("climb")
 	elif not is_on_floor():
 		animator.play("jumpUp" if velocity.y < 0 else "jumpDown")
 	else:

@@ -1,9 +1,10 @@
-[gd_scene load_steps=6 format=4 uid="uid://cgn5v438ay7my"]
+[gd_scene load_steps=7 format=4 uid="uid://cgn5v438ay7my"]
 
 [ext_resource type="Texture2D" uid="uid://bvsvm7e1kkjdm" path="res://stringstar fields/background_0.png" id="1_eordj"]
 [ext_resource type="PackedScene" uid="uid://behcq23q1xbhb" path="res://Scene/player.tscn" id="2_116po"]
 [ext_resource type="PackedScene" uid="uid://hnvfxbff52lm" path="res://Scene/platform.tscn" id="3_lik8c"]
 [ext_resource type="PackedScene" uid="uid://c3cstmmt2qdkk" path="res://Scene/enemy.tscn" id="4_n0f63"]
+[ext_resource type="PackedScene" uid="uid://jtuteyv8qfqo" path="res://Scene/ladder.tscn" id="5_82auf"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2kvn4"]
 
@@ -64,3 +65,7 @@ tile_map_data = PackedByteArray("AAD//wEAAAABAAEAAAAAAAEAAAABAAEAAAABAAEAAAABAAE
 
 [node name="enemy" parent="." instance=ExtResource("4_n0f63")]
 position = Vector2(81, -35)
+is_vectical = true
+
+[node name="ladder" parent="." instance=ExtResource("5_82auf")]
+position = Vector2(-30, -18)

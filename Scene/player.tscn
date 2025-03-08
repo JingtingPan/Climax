@@ -1,15 +1,18 @@
-[gd_scene load_steps=27 format=3 uid="uid://behcq23q1xbhb"]
+[gd_scene load_steps=28 format=3 uid="uid://behcq23q1xbhb"]
 
-[ext_resource type="Texture2D" uid="uid://b0lbk3kwinf3u" path="res://AssetBundle/Sprites/Foxy.png" id="1_c83fy"]
 [ext_resource type="Script" path="res://Script/player.gd" id="1_jhslf"]
 [ext_resource type="Texture2D" uid="uid://do4cxg2e6ed16" path="res://entro/Right tumble jump/IMG_5305.png" id="2_5ur6r"]
+[ext_resource type="Texture2D" uid="uid://dlox8htnm0tol" path="res://entro/Climb/IMG_5346.png" id="2_q2cut"]
 [ext_resource type="Texture2D" uid="uid://dv02e76mcaugq" path="res://entro/Right tumble jump/IMG_5306.png" id="3_23qsr"]
+[ext_resource type="Texture2D" uid="uid://b1svjifkas1yx" path="res://entro/Climb/IMG_5347.png" id="3_x81p3"]
 [ext_resource type="Texture2D" uid="uid://dounllw6dxvf3" path="res://entro/Right tumble jump/IMG_5307.png" id="4_i5j62"]
 [ext_resource type="Texture2D" uid="uid://cmdx8xjww6b0m" path="res://entro/Right tumble jump/IMG_5308.png" id="5_l68vk"]
 [ext_resource type="Texture2D" uid="uid://dexkl836jhfid" path="res://entro/Right tumble jump/IMG_5309.png" id="6_fbcfj"]
 [ext_resource type="Texture2D" uid="uid://bfsq2tllo1ygp" path="res://entro/Idle/IMG_5265.png" id="8_b1mmr"]
+[ext_resource type="Texture2D" uid="uid://cxp5m4qi4d8e2" path="res://entro/React/IMG_5349.png" id="9_3qlai"]
 [ext_resource type="Texture2D" uid="uid://dex6gwllfkfp4" path="res://entro/Idle/IMG_5266.png" id="9_a0xus"]
 [ext_resource type="Texture2D" uid="uid://r4xf4vw5t85h" path="res://entro/Idle/IMG_5267.png" id="10_wie2x"]
+[ext_resource type="Texture2D" uid="uid://ctbr5b4vh8wti" path="res://entro/React/IMG_5350.png" id="10_xj7ud"]
 [ext_resource type="Texture2D" uid="uid://dvvt0hm7ebqoy" path="res://entro/Idle/IMG_5268(1).png" id="11_terup"]
 [ext_resource type="Texture2D" uid="uid://cnvbexd7mk2is" path="res://entro/Idle/IMG_5268.png" id="12_25at6"]
 [ext_resource type="Texture2D" uid="uid://cphkkqhxqk564" path="res://entro/Idle/IMG_5269.png" id="13_nr77x"]
@@ -22,20 +25,23 @@
 [ext_resource type="Texture2D" uid="uid://b0ga5dsip78vc" path="res://entro/Run right/IMG_5298(1).png" id="20_7pb6u"]
 [ext_resource type="Texture2D" uid="uid://cdtqdhin6k01w" path="res://entro/Run right/IMG_5298.png" id="21_rrnra"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_d7swl"]
-atlas = ExtResource("1_c83fy")
-region = Rect2(0, 128, 33, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_b1f4g"]
-atlas = ExtResource("1_c83fy")
-region = Rect2(33, 128, 33, 32)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_uvue6"]
 atlas = ExtResource("8_b1mmr")
 region = Rect2(0, 0, 2048, 2048)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hjs6w"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_q2cut")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_x81p3")
+}],
+"loop": true,
+"name": &"climb",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_5ur6r")
@@ -58,14 +64,14 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_d7swl")
+"texture": ExtResource("9_3qlai")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_b1f4g")
+"texture": ExtResource("10_xj7ud")
 }],
 "loop": true,
 "name": &"die",
-"speed": 10.0
+"speed": 4.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -152,9 +158,9 @@ animator = NodePath("AnimatedSprite2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.02, 0.02)
 sprite_frames = SubResource("SpriteFrames_hjs6w")
-animation = &"die"
+animation = &"climb"
 autoplay = "idle"
-frame_progress = 0.681316
+frame_progress = 0.704058
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 3)
