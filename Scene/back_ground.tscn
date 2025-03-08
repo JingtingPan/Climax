@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=4 uid="uid://cgn5v438ay7my"]
+[gd_scene load_steps=8 format=4 uid="uid://cgn5v438ay7my"]
 
 [ext_resource type="Texture2D" uid="uid://bvsvm7e1kkjdm" path="res://stringstar fields/background_0.png" id="1_eordj"]
 [ext_resource type="PackedScene" uid="uid://behcq23q1xbhb" path="res://Scene/player.tscn" id="2_116po"]
 [ext_resource type="PackedScene" uid="uid://hnvfxbff52lm" path="res://Scene/platform.tscn" id="3_lik8c"]
+[ext_resource type="PackedScene" uid="uid://dkesqckt5n8vf" path="res://Scene/npc_1.tscn" id="4_dtyc8"]
 [ext_resource type="PackedScene" uid="uid://c3cstmmt2qdkk" path="res://Scene/enemy.tscn" id="4_n0f63"]
 [ext_resource type="PackedScene" uid="uid://jtuteyv8qfqo" path="res://Scene/ladder.tscn" id="5_82auf"]
 
@@ -69,3 +70,9 @@ is_vectical = true
 
 [node name="ladder" parent="." instance=ExtResource("5_82auf")]
 position = Vector2(-30, -18)
+
+[node name="ladder2" parent="." instance=ExtResource("5_82auf")]
+position = Vector2(-30, -44)
+
+[node name="npc1" parent="." instance=ExtResource("4_dtyc8")]
+position = Vector2(-103, -5)

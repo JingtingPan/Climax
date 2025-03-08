@@ -7,14 +7,14 @@ extends CharacterBody2D
 @export var dash_duration: float = 0.2
 @export var animator : AnimatedSprite2D
 @export var climb_speed : float = 100
-# Called when the node enters the scene tree for the first time.
 
+@onready var ladder_detector = $LadderDetector
 var is_attacked = false 
 var is_falling_through = false
 var is_dashing = false
 var is_climbing = false
 var can_dash = true  # is the player eligible for dashing
-
+var is_jumping = false
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -22,12 +22,15 @@ func _physics_process(delta: float):
 	if is_climbing:
 		handle_climbing(delta)
 		handle_jump()
+		
 	else:
 		apply_gravity(delta)
 		handle_movement()
 		handle_jump()
 		handle_platform_pass_through()
 		handle_dash()
+	 # 检查玩家是否在梯子附近
+	check_ladder_overlap()
 	
 	update_animation()
 	move_and_slide()
@@ -38,6 +41,8 @@ func apply_gravity(delta: float):
 		velocity.y += gravity * delta
 		
 # left and right movement
+
+		
 func handle_movement():
 	if is_dashing:
 		return  # no movement control during dashing
@@ -50,7 +55,7 @@ func handle_movement():
 		velocity.x = move_toward(velocity.x, 0, speed)
 
 	
-func handle_climbing(delat: float):
+func handle_climbing(delta: float):
 	velocity.x = 0  # no horizontal speed
 	if Input.is_action_pressed("up"):
 		velocity.y = -climb_speed  # climb up
@@ -64,16 +69,40 @@ func handle_climbing(delat: float):
 		velocity.y = 0  # stop climbing
 		if not animator.is_playing() or animator.animation != "climb":
 			animator.stop()
-
+			
+#check if the player is on another ladder
+func check_ladder_overlap():
+	var is_near_ladder = false
+	for area in ladder_detector.get_overlapping_areas():
+		if area.is_in_group("ladder"):
+			is_near_ladder = true
+			break
+	if is_near_ladder and not is_jumping:
+		is_climbing = true
+		print("Entered ladder")
+	else:
+		print("Exited ladder")
+		is_climbing = false			
+	
+	
 # jump
 func handle_jump():
 	if is_on_floor() or is_climbing:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jump_force
 			can_dash = true # reset dash
+			is_jumping = true
 			if is_climbing:
 				is_climbing = false
-		
+			await get_tree().create_timer(0.5).timeout  # 等待短暂时间
+			is_jumping = false  # 重置跳跃状态
+
+func disable_ladder_collision():
+	ladder_detector.monitoring = false  # 禁用梯子检测
+
+func enable_ladder_collision():
+	ladder_detector.monitoring = true  # 启用梯子检测
+			
 # dash while in the air
 func handle_dash():
 	if Input.is_action_just_pressed("dash") and not is_on_floor() and can_dash:

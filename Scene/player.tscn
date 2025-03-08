@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://behcq23q1xbhb"]
+[gd_scene load_steps=29 format=3 uid="uid://behcq23q1xbhb"]
 
 [ext_resource type="Script" path="res://Script/player.gd" id="1_jhslf"]
 [ext_resource type="Texture2D" uid="uid://do4cxg2e6ed16" path="res://entro/Right tumble jump/IMG_5305.png" id="2_5ur6r"]
@@ -148,6 +148,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ihifg"]
 size = Vector2(25, 33)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_knnci"]
+size = Vector2(24, 29)
+
 [node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animator")]
 collision_mask = 2
 script = ExtResource("1_jhslf")
@@ -160,8 +163,15 @@ scale = Vector2(0.02, 0.02)
 sprite_frames = SubResource("SpriteFrames_hjs6w")
 animation = &"climb"
 autoplay = "idle"
-frame_progress = 0.704058
+frame_progress = 0.429209
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 3)
 shape = SubResource("RectangleShape2D_ihifg")
+
+[node name="LadderDetector" type="Area2D" parent="."]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LadderDetector"]
+position = Vector2(1, 1.5)
+shape = SubResource("RectangleShape2D_knnci")

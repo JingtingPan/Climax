@@ -6,7 +6,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_c1x10"]
 size = Vector2(200, 775)
 
-[node name="ladder" type="Area2D"]
+[node name="ladder" type="Area2D" groups=["ladder"]]
 scale = Vector2(0.04, 0.04)
 collision_layer = 16
 script = ExtResource("1_op7fu")

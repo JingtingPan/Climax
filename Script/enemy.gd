@@ -33,12 +33,12 @@ func _physics_process(delta: float):
 
 
 func _on_body_entered(body: Node2D) -> void:
-	print("body entered")
+	#print("body entered")
 	if body is CharacterBody2D :
 		body.player_attacked()
-		print("player enter")
+		#print("player enter")
 	elif body is TileMapLayer:
-		print("wall enter")
+		#print("wall enter")
 		if not enter_wall:
 			direction *= -1
 			if not is_vectical:

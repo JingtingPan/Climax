@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://cie1ux7qfoh8k"]
+
+[ext_resource type="Script" path="res://Script/npc_2.gd" id="1_1h0ua"]
+[ext_resource type="Texture2D" uid="uid://bvpkx6bvbu0st" path="res://entro/NPC/IMG_5295.png" id="2_ieqof"]
+[ext_resource type="Texture2D" uid="uid://be7gudsu11bmv" path="res://entro/NPC/IMG_5296.png" id="3_p78qk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wa5oi"]
+size = Vector2(5900, 1750)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cwe44"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ieqof")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ieqof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_p78qk")
+}],
+"loop": true,
+"name": &"talk",
+"speed": 5.0
+}]
+
+[node name="npc2" type="StaticBody2D"]
+scale = Vector2(0.02, 0.02)
+script = ExtResource("1_1h0ua")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(9.53674e-05, 125)
+shape = SubResource("RectangleShape2D_wa5oi")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cwe44")
+animation = &"talk"
+autoplay = "idle"
