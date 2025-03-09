@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 Inventory="*res://Custom_Door_Key_Inventory_Workspace/inventory_display_control.gd"
 
+[display]
+
+window/size/mode=3
+
 [editor]
 
 version_control/autoload_on_startup=true
