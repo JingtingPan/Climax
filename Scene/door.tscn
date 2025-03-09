@@ -57,5 +57,15 @@ sprite_frames = SubResource("SpriteFrames_2shhy")
 animation = &"collect"
 frame_progress = 0.838407
 
+[node name="Label" type="Label" parent="Item_Node2D"]
+offset_left = -400.0
+offset_top = -1300.0
+offset_right = 400.0
+offset_bottom = -950.0
+theme_override_font_sizes/font_size = 150
+text = "bike"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
