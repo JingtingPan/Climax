@@ -1,12 +1,17 @@
 extends Control
 
 @onready var inventory_display = $VBoxContainer
-var labels = {}  # 存储 Label 引用
+@onready var label = $HBoxContainer/Label
 
+@onready var low_energy = $HBoxContainer/low
+@onready var normal = $HBoxContainer/normal
+var labels = {}  # 存储 Label 引用
+var entropy_level
 func _ready():
 	# 监听 Inventory 单例的信号
 	Inventory.inventory_updated.connect(update_inventory_display)
-
+	Inventory.status_changed.connect(update_status)
+	update_status(Inventory.entropyLevel)  # 初始化 UI
 	# **初始化 UI**
 	update_inventory_display()
 
@@ -25,3 +30,12 @@ func update_inventory_display():
 			labels[item_name] = item_label
 	
 	inventory_display.queue_redraw()  # 强制 UI 重新渲染
+func update_status(value: int):
+	if value < 10:  # 当数值低时
+		label.text = "LOW"
+		low_energy.show()
+		normal.hide()
+	else:
+		label.text = "NOMRAL"
+		low_energy.hide()
+		normal.show()
