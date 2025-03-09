@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Inventory="*res://Custom_Door_Key_Inventory_Workspace/inventory_display_control.gd"
+Inventory="*res://Scene/inventory.tscn"
 
 [editor]
 

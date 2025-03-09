@@ -15,8 +15,9 @@ var is_dashing = false
 var is_climbing = false
 var can_dash = true  # is the player eligible for dashing
 var is_jumping = false
-
-
+func _ready():
+	z_index = 10  # 设置 Z Index 为 10
+	z_as_relative = true  # 让它在父节点内保持相对顺序
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float):
 	if is_climbing:

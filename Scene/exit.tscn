@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://rsmkjpb16ldr"]
 
 [ext_resource type="Script" path="res://Script/exit.gd" id="1_j1i48"]
-[ext_resource type="Texture2D" uid="uid://chlng7teyrxae" path="res://entro/IMG_5348.png" id="2_f4jld"]
-[ext_resource type="Texture2D" uid="uid://bem2nqlnse8uf" path="res://entro/lock.png" id="3_lo7av"]
+[ext_resource type="Texture2D" uid="uid://2voun8dcdygr" path="res://entro/Tile map/IMG_5363.png" id="2_op8my"]
+[ext_resource type="Texture2D" uid="uid://cpr1ous182h73" path="res://entro/Tile map/IMG_5367.png" id="3_rmkl4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2rw13"]
 size = Vector2(1653, 1067)
@@ -17,10 +17,12 @@ shape = SubResource("RectangleShape2D_2rw13")
 
 [node name="doorOpen" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("2_f4jld")
+texture = ExtResource("2_op8my")
 
 [node name="doorclosed" type="Sprite2D" parent="."]
-texture = ExtResource("3_lo7av")
+position = Vector2(-125, 25)
+scale = Vector2(1.08643, 1.25438)
+texture = ExtResource("3_rmkl4")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]

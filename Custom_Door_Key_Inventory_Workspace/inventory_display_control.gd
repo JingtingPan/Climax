@@ -4,6 +4,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 var inventory_display   # 先创建一个 VBoxContainer 作为子节点
 var labels = {}  # 用来存储现有的 Label
+signal inventory_updated  # **用于通知 UI 更新**
 
 func _ready() -> void:
 	inventory_display = get_node_or_null("VBoxContainer")
