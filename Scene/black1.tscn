@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4qqqpa6r8gdw"]
+
+[ext_resource type="Texture2D" uid="uid://b65rnea555bqu" path="res://entro/Tile map/IMG_5351.png" id="1_cjl6y"]
+
+[node name="black1" type="StaticBody2D"]
+scale = Vector2(0.02, 0.02)
+collision_layer = 2
+collision_mask = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(50, 0)
+texture = ExtResource("1_cjl6y")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+position = Vector2(2.38419e-07, 243.437)
+scale = Vector2(1.00648, 1.00807)
+polygon = PackedVector2Array(-2.36884e-07, -246.706, -2.36884e-07, -888.143, -546.46, -888.143, -546.46, 246.706, -546.46, 296.048, 645.816, 296.048, 645.816, -246.706)

@@ -37,7 +37,7 @@ func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D :
 		body.player_attacked()
 		#print("player enter")
-	elif body is TileMapLayer:
+	elif body is StaticBody2D:
 		#print("wall enter")
 		if not enter_wall:
 			direction *= -1
