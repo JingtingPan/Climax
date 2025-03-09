@@ -41,11 +41,14 @@ func _process(delta: float) -> void:
 				$Sprite_Locked_Door.hide()
 				animator.show()
 				animator.play("fake")
+				Inventory.remove_from_inventory("KEY")
+				notice.text = "Nothing but void..."
 				await get_tree().create_timer(0.5).timeout
+				animator.stop()
+				await get_tree().create_timer(1).timeout
 				queue_free()
 			else:
 				unlock()
-				notice.text = "Gotcha!"
 				Inventory.remove_from_inventory("KEY")
 		else:
 			notice.text = "Not enough key!"

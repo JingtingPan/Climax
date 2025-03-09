@@ -692,7 +692,7 @@ color = Color(0.0980392, 0.109804, 0.32549, 1)
 polygon = PackedVector2Array(490.238, -289.395, 490.311, -248.57, 521.591, -248.565, 521.864, -238.039, 532.831, -237.908, 533.135, -196.376, 522.264, -196.497, 522.385, -185.868, 542.918, -185.988, 543.132, -175.681, 575.78, -175.89, 575.937, -186.425, 586.211, -186.425, 586.263, -196.647, 596.641, -196.594, 596.797, -206.92, 606.811, -207.181, 606.883, -289.823, 490.394, -289.5)
 
 [node name="Exit" parent="." instance=ExtResource("10_gfenv")]
-position = Vector2(603.509, -320.797)
+position = Vector2(604, -319)
 
 [node name="entropyTimer" parent="." instance=ExtResource("11_s0ah4")]
 
@@ -955,7 +955,7 @@ memory_name = "home made cookies"
 
 [node name="Door2" parent="doors" instance=ExtResource("12_g1bp6")]
 position = Vector2(163, -173)
-memory_name = "Cookies"
+memory_name = "Mommie's Cookies"
 is_fake = true
 
 [node name="Door3" parent="doors" instance=ExtResource("12_g1bp6")]

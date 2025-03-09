@@ -1,4 +1,5 @@
 extends Area2D
+@onready var notice = $Label
 
 var player_near :bool = false
 var door_locked :bool = true
@@ -11,18 +12,21 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if player_near and door_locked:
-		if Input.is_action_just_pressed("interact") and Inventory.inventory_dict["KEYS"] > 0:
-			unlock()
-			Inventory.remove_from_inventory("KEY")
-			$doorclosed.hide()
-			$doorOpen.show()
+		if Input.is_action_just_pressed("interact"):
+			if Inventory.inventory_dict["KEYS"] > 0:
+				unlock()
+				Inventory.remove_from_inventory("KEY")
+				$doorclosed.hide()
+				$doorOpen.show()
 			
-		else:
-			pass
-			#print("you dont have key")
+			else:
+				notice.text = "Not enough key!"
+				await get_tree().create_timer(2).timeout
+				notice.text = ""
+				#print("you dont have key")
 	elif player_near and not door_locked:
 		if Input.is_action_just_pressed("interact"):
-			print("next level")		
+			notice.text = "Onto the next dream!"	
 
 
 func _on_body_entered(body: Node2D) -> void:

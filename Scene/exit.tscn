@@ -24,5 +24,12 @@ position = Vector2(-125, 25)
 scale = Vector2(1.08643, 1.25438)
 texture = ExtResource("3_rmkl4")
 
+[node name="Label" type="Label" parent="."]
+offset_left = -650.0
+offset_top = -1300.0
+offset_right = -610.0
+offset_bottom = -1277.0
+scale = Vector2(14.625, 14.625)
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
