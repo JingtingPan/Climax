@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://crty5cx6ihk56"]
+[gd_scene load_steps=12 format=3 uid="uid://crty5cx6ihk56"]
 
 [ext_resource type="Script" path="res://Custom_Door_Key_Inventory_Workspace/door.gd" id="1_r728q"]
 [ext_resource type="Texture2D" uid="uid://ju6ycruar357" path="res://entro/Memory fragment.png" id="1_robsb"]
@@ -11,6 +11,26 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6h52"]
 size = Vector2(1800, 1000)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wb1x5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_p2562")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_lgm3f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_8l2w7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bp666")
+}],
+"loop": true,
+"name": &"fake",
+"speed": 5.0
+}]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_2shhy"]
 animations = [{
@@ -32,10 +52,11 @@ animations = [{
 "speed": 6.0
 }]
 
-[node name="Door" type="Area2D"]
+[node name="Door" type="Area2D" node_paths=PackedStringArray("animator")]
 scale = Vector2(0.02, 0.02)
 collision_layer = 64
 script = ExtResource("1_r728q")
+animator = NodePath("AnimatedSprite2D")
 
 [node name="Sprite_Locked_Door" type="Sprite2D" parent="."]
 texture = ExtResource("2_beqpr")
@@ -47,6 +68,10 @@ texture = ExtResource("3_p2562")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-50, -50)
 shape = SubResource("RectangleShape2D_g6h52")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_wb1x5")
+animation = &"fake"
 
 [node name="Item_Node2D" parent="." node_paths=PackedStringArray("animator") instance=ExtResource("4_5b4ap")]
 scale = Vector2(1, 1)
