@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://noofnu5bsgn7"]
+[gd_scene load_steps=15 format=3 uid="uid://noofnu5bsgn7"]
 
 [ext_resource type="Texture2D" uid="uid://bhyse86qlcvit" path="res://entro/Title screen/IMG_5365.png" id="1_7nni1"]
 [ext_resource type="PackedScene" uid="uid://behcq23q1xbhb" path="res://Scene/player.tscn" id="1_exsar"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" path="res://Scene/pink2.tscn" id="7_3apdd"]
 [ext_resource type="PackedScene" path="res://Scene/key.tscn" id="7_jux5c"]
 [ext_resource type="PackedScene" path="res://Scene/enemy.tscn" id="7_strvs"]
+[ext_resource type="PackedScene" uid="uid://rsmkjpb16ldr" path="res://Scene/exit.tscn" id="10_gfenv"]
+[ext_resource type="PackedScene" path="res://Scene/entropy_timer.tscn" id="11_s0ah4"]
 
 [sub_resource type="Gradient" id="Gradient_6n8hl"]
 offsets = PackedFloat32Array(0.211039, 0.451299, 0.561688, 0.685065, 0.873377)
@@ -685,7 +687,7 @@ position = Vector2(111.597, -113.844)
 position = Vector2(111.597, -140.416)
 
 [node name="key" parent="." instance=ExtResource("7_jux5c")]
-position = Vector2(314.89, -274.177)
+position = Vector2(313.857, -281.15)
 
 [node name="key2" parent="." instance=ExtResource("7_jux5c")]
 position = Vector2(377.073, -95.9317)
@@ -694,9 +696,10 @@ position = Vector2(377.073, -95.9317)
 position = Vector2(523.108, -116.431)
 
 [node name="key3" parent="." instance=ExtResource("7_jux5c")]
-position = Vector2(634.522, -251.718)
+position = Vector2(635.297, -257.141)
 
 [node name="Cloud" type="Node2D" parent="."]
+position = Vector2(-0.25824, -8.00531)
 
 [node name="pink2" parent="Cloud" instance=ExtResource("7_3apdd")]
 position = Vector2(224.237, -178.346)
@@ -979,31 +982,31 @@ position = Vector2(485.221, -290.337)
 rotation = -1.5708
 
 [node name="blue56" parent="ExitRock" instance=ExtResource("3_agytk")]
-position = Vector2(501.904, -294.627)
+position = Vector2(501.904, -294.6)
 
 [node name="blue57" parent="ExitRock" instance=ExtResource("3_agytk")]
-position = Vector2(523.036, -294.627)
+position = Vector2(523.036, -294.6)
 
 [node name="blue58" parent="ExitRock" instance=ExtResource("3_agytk")]
-position = Vector2(544.01, -294.627)
+position = Vector2(544.01, -294.6)
 
 [node name="blue61" parent="ExitRock" instance=ExtResource("3_agytk")]
-position = Vector2(565.142, -294.627)
+position = Vector2(565.142, -294.6)
 
 [node name="blue62" parent="ExitRock" instance=ExtResource("3_agytk")]
-position = Vector2(586.433, -294.627)
+position = Vector2(586.433, -294.6)
 
 [node name="blue63" parent="ExitRock" instance=ExtResource("3_agytk")]
-position = Vector2(607.565, -294.785)
+position = Vector2(607.565, -294.6)
 
 [node name="blue64" parent="ExitRock" instance=ExtResource("3_agytk")]
-position = Vector2(628.538, -294.627)
+position = Vector2(628.538, -294.6)
 
 [node name="blue65" parent="ExitRock" instance=ExtResource("3_agytk")]
-position = Vector2(649.431, -294.667)
+position = Vector2(649.431, -294.6)
 
 [node name="blue77" parent="ExitRock" instance=ExtResource("3_agytk")]
-position = Vector2(670.608, -294.667)
+position = Vector2(670.608, -294.6)
 
 [node name="blue80" parent="ExitRock" instance=ExtResource("3_agytk")]
 position = Vector2(669.252, -284.163)
@@ -1067,13 +1070,15 @@ polygon = PackedVector2Array(490.238, -289.395, 490.311, -248.57, 521.591, -248.
 position = Vector2(656.872, -157.663)
 
 [node name="Area2D2" parent="ExitRock" instance=ExtResource("7_strvs")]
-position = Vector2(428.211, -147.443)
-
-[node name="Area2D3" parent="ExitRock" instance=ExtResource("7_strvs")]
-position = Vector2(309.245, -56.3984)
+position = Vector2(414.008, -150.284)
 
 [node name="Area2D5" parent="ExitRock" instance=ExtResource("7_strvs")]
 position = Vector2(76.2264, -46.3122)
 
 [node name="Area2D4" parent="ExitRock" instance=ExtResource("7_strvs")]
-position = Vector2(243.193, -308.504)
+position = Vector2(254.556, -311.603)
+
+[node name="Exit" parent="." instance=ExtResource("10_gfenv")]
+position = Vector2(603.509, -320.797)
+
+[node name="entropyTimer" parent="." instance=ExtResource("11_s0ah4")]
