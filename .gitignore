@@ -1,4 +1,4 @@
 # Godot 4+ specific ignores
 .godot/
 /android/
-D:\godot\Climax\Scene\back_ground.tscn
+/ClimaxScene/back_ground.tscn
