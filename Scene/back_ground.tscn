@@ -9,17 +9,17 @@
 [ext_resource type="PackedScene" path="res://Scene/pink2.tscn" id="7_0wr8m"]
 [ext_resource type="PackedScene" path="res://Scene/black1.tscn" id="8_csr34"]
 [ext_resource type="PackedScene" path="res://Scene/blue2.tscn" id="8_d1n0w"]
-[ext_resource type="PackedScene" path="res://Scene/inventory.tscn" id="10_bfvgy"]
-[ext_resource type="PackedScene" path="res://Scene/exit.tscn" id="11_awbvj"]
+[ext_resource type="PackedScene" uid="uid://db31fsk18xmxs" path="res://Scene/inventory.tscn" id="10_bfvgy"]
+[ext_resource type="PackedScene" uid="uid://rsmkjpb16ldr" path="res://Scene/exit.tscn" id="11_awbvj"]
 [ext_resource type="PackedScene" path="res://Scene/door.tscn" id="12_ak8qf"]
 [ext_resource type="PackedScene" path="res://Scene/key.tscn" id="13_8d1dn"]
 
-[sub_resource type="Gradient" id="Gradient_6n8hl"]
+[sub_resource type="Gradient" id="Gradient_7i4j6"]
 offsets = PackedFloat32Array(0.211039, 0.451299, 0.561688, 0.685065, 0.873377)
 colors = PackedColorArray(1, 1, 1, 1, 0.751445, 0.751445, 0.751445, 1, 0.554913, 0.554913, 0.554913, 1, 0.33526, 0.33526, 0.33526, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_weykn"]
-gradient = SubResource("Gradient_6n8hl")
+gradient = SubResource("Gradient_7i4j6")
 fill = 1
 fill_from = Vector2(0.502294, 0.527523)
 fill_to = Vector2(0.866973, 0.137615)

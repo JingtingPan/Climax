@@ -1,17 +1,184 @@
-[gd_scene load_steps=3 format=3 uid="uid://noofnu5bsgn7"]
+[gd_scene load_steps=10 format=3 uid="uid://noofnu5bsgn7"]
 
+[ext_resource type="Texture2D" uid="uid://bhyse86qlcvit" path="res://entro/Title screen/IMG_5365.png" id="1_7nni1"]
 [ext_resource type="PackedScene" uid="uid://behcq23q1xbhb" path="res://Scene/player.tscn" id="1_exsar"]
+[ext_resource type="PackedScene" path="res://Scene/blue3.tscn" id="2_oiaxu"]
+[ext_resource type="PackedScene" path="res://Scene/blue2.tscn" id="3_agytk"]
+[ext_resource type="PackedScene" path="res://Scene/blue1.tscn" id="4_nnewx"]
+[ext_resource type="PackedScene" uid="uid://dfsqq22ps0pqf" path="res://Scene/ladder.tscn" id="6_5lsay"]
+
+[sub_resource type="Gradient" id="Gradient_6n8hl"]
+offsets = PackedFloat32Array(0.211039, 0.451299, 0.561688, 0.685065, 0.873377)
+colors = PackedColorArray(1, 1, 1, 1, 0.751445, 0.751445, 0.751445, 1, 0.554913, 0.554913, 0.554913, 1, 0.33526, 0.33526, 0.33526, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_xftkn"]
+gradient = SubResource("Gradient_6n8hl")
+fill = 1
+fill_from = Vector2(0.502294, 0.527523)
+fill_to = Vector2(0.866973, 0.137615)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_krp3n"]
 
 [node name="Level1" type="Node2D"]
 
+[node name="Background" type="Sprite2D" parent="."]
+texture = ExtResource("1_7nni1")
+
 [node name="player" parent="." instance=ExtResource("1_exsar")]
-position = Vector2(-19, -39)
+position = Vector2(31.7984, -56.2359)
+gravity = 800.0
+
+[node name="PointLight2D" type="PointLight2D" parent="player"]
+position = Vector2(4.63385, -1.75218)
+scale = Vector2(2.23707, 2.1626)
+texture = SubResource("GradientTexture2D_xftkn")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(3.5, 3.5)
+process_callback = 0
+position_smoothing_enabled = true
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="Floor boundary" type="StaticBody2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor boundary"]
 shape = SubResource("WorldBoundaryShape2D_krp3n")
+
+[node name="SkyBoundary" type="StaticBody2D" parent="."]
+position = Vector2(15.1823, -312.596)
+rotation = 3.14159
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SkyBoundary"]
+shape = SubResource("WorldBoundaryShape2D_krp3n")
+
+[node name="blue3" parent="." instance=ExtResource("2_oiaxu")]
+position = Vector2(16, -264)
+
+[node name="blue4" parent="." instance=ExtResource("2_oiaxu")]
+position = Vector2(60.9091, -265.213)
+rotation = 1.5708
+
+[node name="blue2" parent="." instance=ExtResource("3_agytk")]
+position = Vector2(37.9091, -270.655)
+rotation = 3.14159
+
+[node name="blue5" parent="." instance=ExtResource("3_agytk")]
+position = Vector2(39.911, -15.5923)
+
+[node name="blue6" parent="." instance=ExtResource("3_agytk")]
+position = Vector2(60.8563, -15.592)
+
+[node name="blue7" parent="." instance=ExtResource("3_agytk")]
+position = Vector2(133.639, -149.249)
+
+[node name="blue8" parent="." instance=ExtResource("3_agytk")]
+position = Vector2(154.614, -149.249)
+
+[node name="blue9" parent="." instance=ExtResource("3_agytk")]
+position = Vector2(175.709, -149.249)
+
+[node name="SpawnWall" type="Node2D" parent="."]
+position = Vector2(10.3539, -152.844)
+
+[node name="blue5" parent="SpawnWall" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0194626, -87.7097)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue6" parent="SpawnWall" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, -65.7097)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue7" parent="SpawnWall" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, -43.7097)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue8" parent="SpawnWall" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, -21.7097)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue9" parent="SpawnWall" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, 22.2903)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue10" parent="SpawnWall" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, 44.2903)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue11" parent="SpawnWall" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, 66.2903)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue13" parent="SpawnWall" instance=ExtResource("3_agytk")]
+position = Vector2(-0.31892, 86.29)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue14" parent="SpawnWall" instance=ExtResource("3_agytk")]
+position = Vector2(-0.319, 108.589)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue12" parent="SpawnWall" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, 0.290268)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="SpawnWall2" type="Node2D" parent="."]
+position = Vector2(67.4491, -176.393)
+rotation = 3.14159
+
+[node name="blue6" parent="SpawnWall2" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, -65.7097)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue7" parent="SpawnWall2" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, -43.7097)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue8" parent="SpawnWall2" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, -21.7097)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue9" parent="SpawnWall2" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, 22.2903)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue10" parent="SpawnWall2" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, 44.2903)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue11" parent="SpawnWall2" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, 66.2903)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="blue12" parent="SpawnWall2" instance=ExtResource("3_agytk")]
+position = Vector2(-0.0199432, 0.290268)
+rotation = 1.5708
+scale = Vector2(0.021, 0.021)
+
+[node name="LeftRidge" parent="." instance=ExtResource("4_nnewx")]
+position = Vector2(15.5021, -20.938)
+
+[node name="ladder" parent="." instance=ExtResource("6_5lsay")]
+position = Vector2(111.597, -59.8676)
+
+[node name="ladder2" parent="." instance=ExtResource("6_5lsay")]
+position = Vector2(111.597, -85.61)
+
+[node name="ladder3" parent="." instance=ExtResource("6_5lsay")]
+position = Vector2(111.597, -113.844)
+
+[node name="ladder4" parent="." instance=ExtResource("6_5lsay")]
+position = Vector2(111.597, -140.416)
