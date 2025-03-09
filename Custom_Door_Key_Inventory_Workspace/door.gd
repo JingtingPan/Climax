@@ -30,7 +30,8 @@ func show_item():
 	$Item_Node2D.show()
 	await get_tree().create_timer(2).timeout
 	
-	
+#would like some insight on modifying below
+#so that it does not activate for enemies
 func _on_DoorArea_Area2d_body_entered(body):
 	#Insert if statement header such as:
 	#if body.name = player_name
@@ -39,9 +40,10 @@ func _on_DoorArea_Area2d_body_entered(body):
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	#"interact" in line below is a placeholder
-	# player could press q or something
+
 	if player_near and Input.is_action_just_pressed("KEY_Q"):
-		if not locked:
+		if locked and inventory_display.inventory_dict["KEYS"] > 0:
+			
 			unlock()
+			inventory_display.inventory_dict["KEYS"]-= 1
 	
