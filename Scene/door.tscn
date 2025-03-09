@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://crty5cx6ihk56"]
+[gd_scene load_steps=11 format=3 uid="uid://crty5cx6ihk56"]
 
 [ext_resource type="Script" path="res://Custom_Door_Key_Inventory_Workspace/door.gd" id="1_r728q"]
 [ext_resource type="Texture2D" uid="uid://ju6ycruar357" path="res://entro/Memory fragment.png" id="1_robsb"]
-[ext_resource type="Texture2D" uid="uid://bem2nqlnse8uf" path="res://entro/lock.png" id="2_3yuob"]
+[ext_resource type="Texture2D" uid="uid://dk4r3vbki16tp" path="res://entro/Tile map/IMG_5364.png" id="2_beqpr"]
+[ext_resource type="Texture2D" uid="uid://2voun8dcdygr" path="res://entro/Tile map/IMG_5363.png" id="3_p2562"]
 [ext_resource type="PackedScene" uid="uid://b8rvy62uxjrhi" path="res://Scene/item.tscn" id="4_5b4ap"]
 [ext_resource type="Texture2D" uid="uid://cn50oilodwy23" path="res://entro/Enemies/Death/IMG_5285.png" id="6_lgm3f"]
 [ext_resource type="Texture2D" uid="uid://bfdee7udxmk4f" path="res://entro/Enemies/Death/IMG_5286.png" id="7_8l2w7"]
@@ -37,11 +38,11 @@ collision_layer = 64
 script = ExtResource("1_r728q")
 
 [node name="Sprite_Locked_Door" type="Sprite2D" parent="."]
-texture = ExtResource("2_3yuob")
+texture = ExtResource("2_beqpr")
 
 [node name="Sprite_Opened_Cavity" type="Sprite2D" parent="."]
 visible = false
-texture = ExtResource("1_robsb")
+texture = ExtResource("3_p2562")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-50, -50)

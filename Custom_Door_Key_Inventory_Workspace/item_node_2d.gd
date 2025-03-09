@@ -22,7 +22,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if not collected and not door.locked: 
 		door.global_position.y = start_y + sin(Time.get_ticks_msec() * 0.001 * float_speed) * float_height
-		await get_tree().create_timer(0.5).timeout 
+		await get_tree().create_timer(0.3).timeout 
 		if Input.is_action_just_pressed("interact"):
 			collect()
 
@@ -31,6 +31,6 @@ func collect() -> void:
 		#print("collected")
 		Inventory.add_to_inventory(item_name)
 		animator.play("collect")
-		await get_tree().create_timer(0.6).timeout 
+		await get_tree().create_timer(0.5).timeout 
 		collected = true
 	

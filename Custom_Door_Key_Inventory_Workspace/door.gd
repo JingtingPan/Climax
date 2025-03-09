@@ -12,7 +12,7 @@ var player_near: bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$Sprite_Locked_Door.show()
-	$Sprite_Opened_Cavity.hide()
+	#$Sprite_Opened_Cavity.hide()
 	$Item_Node2D.hide()
 	locked = true
 	player_near = false
@@ -20,7 +20,7 @@ func _ready() -> void:
 func unlock():
 	locked = false
 	$Sprite_Locked_Door.hide()
-	$Sprite_Opened_Cavity.show()
+	#$Sprite_Opened_Cavity.show()
 	$Item_Node2D.show()
 	
 

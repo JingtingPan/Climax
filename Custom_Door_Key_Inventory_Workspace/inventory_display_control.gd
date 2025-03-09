@@ -4,6 +4,7 @@ extends Control
 # Called when the node enters the scene tree for the first time.
 var inventory_display   # 先创建一个 VBoxContainer 作为子节点
 var labels = {}  # 用来存储现有的 Label
+
 func _ready() -> void:
 	inventory_display = get_node_or_null("VBoxContainer")
 	if inventory_display == null:
@@ -13,19 +14,25 @@ func _ready() -> void:
 		# 初始化所有的 Label
 		for item_name in inventory_dict.keys():
 			var item_label = Label.new()
+			item_label.name = item_name  # 设置 label 的名字
 			item_label.text = item_name + ": " + str(inventory_dict[item_name])
 			inventory_display.add_child(item_label)
 			labels[item_name] = item_label  # 将标签存入字典中
 	update_inventory_display()
 
 func update_inventory_display():
-	var key_label = Label.new()
-	
 	for item_name in inventory_dict.keys():
-		# 如果已经存在，直接更新文本
-		labels[item_name].text = item_name + ": " + str(inventory_dict[item_name])
-		print(labels[item_name].text)
-		print_inventory_display_children()
+		if item_name in labels:
+			labels[item_name].text = item_name + ": " + str(inventory_dict[item_name])
+		else:
+			# 如果 label 丢失，则重新创建
+			var item_label = Label.new()
+			item_label.name = item_name
+			item_label.text = item_name + ": " + str(inventory_dict[item_name])
+			inventory_display.call_deferred("add_child", item_label)
+			labels[item_name] = item_label
+	print_inventory_display_children()
+	inventory_display.call_deferred("queue_redraw")
 	
 
 func print_inventory_display_children():
