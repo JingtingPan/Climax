@@ -100,7 +100,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"idle",
-"speed": 8.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -119,9 +119,6 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("3_23qsr")
-}, {
-"duration": 1.0,
-"texture": ExtResource("4_i5j62")
 }],
 "loop": true,
 "name": &"jumpUp",
@@ -161,9 +158,8 @@ animator = NodePath("AnimatedSprite2D")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.02, 0.02)
 sprite_frames = SubResource("SpriteFrames_hjs6w")
-animation = &"climb"
+animation = &"idle"
 autoplay = "idle"
-frame_progress = 0.429209
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1, 3)
