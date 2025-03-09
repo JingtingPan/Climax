@@ -1,0 +1,189 @@
+[gd_scene load_steps=17 format=3 uid="uid://dnsga3ib7cn72"]
+
+[ext_resource type="Texture2D" uid="uid://0y3iuh4jnvbw" path="res://entro/Title screen/IMG_5288.png" id="1_0ei7g"]
+[ext_resource type="Texture2D" uid="uid://rqcar1gf463m" path="res://entro/Title screen/IMG_5366.png" id="1_6q2cl"]
+[ext_resource type="Texture2D" uid="uid://2jh753ty216t" path="res://entro/Title screen/IMG_5289.png" id="2_cssne"]
+[ext_resource type="Texture2D" uid="uid://blic7sp0162yn" path="res://entro/Title screen/IMG_5290.png" id="3_7anc4"]
+[ext_resource type="Texture2D" uid="uid://b1qreu203jkba" path="res://entro/Title screen/IMG_5291.png" id="4_eldxp"]
+[ext_resource type="Texture2D" uid="uid://b6dh8qm6nb2b2" path="res://entro/Title screen/IMG_5292.png" id="5_ofrc6"]
+
+[sub_resource type="GDScript" id="GDScript_08skx"]
+script/source = "extends Control
+
+func _on_play_pressed():
+	get_tree().change_scene_to_file(\"res://Scene/back_ground.tscn\")
+	
+
+
+func _on_quit_pressed():
+	get_tree().quit()
+"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_wavry"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0ei7g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cssne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_7anc4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_eldxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ofrc6")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsloq"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0rmq"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_n2go5"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_didn1"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.000693898, 0.000693898, 0.000693898, 0.6)
+shadow_size = 5
+shadow_offset = Vector2(3, 3)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e4odk"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mdjpb"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tsxnp"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gysye"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
+shadow_color = Color(0.0126459, 0.0126459, 0.0126459, 0.6)
+shadow_size = 5
+shadow_offset = Vector2(3, 3)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 24.0
+offset_right = 6.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1, 1.00166)
+script = SubResource("GDScript_08skx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_top = -25.0
+offset_right = -10.0
+offset_bottom = -27.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.894118, 0.913725, 0.992157, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="ColorRect"]
+position = Vector2(573.5, 324.503)
+scale = Vector2(0.638333, 0.540769)
+texture = ExtResource("1_6q2cl")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="ColorRect"]
+position = Vector2(572.5, 321.633)
+scale = Vector2(0.279541, 0.376126)
+sprite_frames = SubResource("SpriteFrames_wavry")
+autoplay = "default"
+frame = 2
+frame_progress = 0.51822
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -117.0
+offset_top = -249.661
+offset_right = 117.0
+offset_bottom = -103.661
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="Play" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.266703, 0.48486, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.262745, 0.486275, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_xsloq")
+theme_override_styles/hover = SubResource("StyleBoxFlat_b0rmq")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_n2go5")
+theme_override_styles/normal = SubResource("StyleBoxFlat_didn1")
+text = "PLAY"
+
+[node name="Quit" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.266667, 0.486275, 1, 1)
+theme_override_colors/font_pressed_color = Color(0.266667, 0.486275, 1, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_e4odk")
+theme_override_styles/hover = SubResource("StyleBoxFlat_mdjpb")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_tsxnp")
+theme_override_styles/normal = SubResource("StyleBoxFlat_gysye")
+text = "QUIT
+"
+
+[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]

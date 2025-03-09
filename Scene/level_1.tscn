@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://noofnu5bsgn7"]
+
+[ext_resource type="PackedScene" uid="uid://behcq23q1xbhb" path="res://Scene/player.tscn" id="1_exsar"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_krp3n"]
+
+[node name="Level1" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource("1_exsar")]
+position = Vector2(-19, -39)
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("WorldBoundaryShape2D_krp3n")

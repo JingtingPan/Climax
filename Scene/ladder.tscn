@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://jtuteyv8qfqo"]
+[gd_scene load_steps=4 format=3 uid="uid://dfsqq22ps0pqf"]
 
 [ext_resource type="Script" path="res://Script/ladder.gd" id="1_op7fu"]
 [ext_resource type="Texture2D" uid="uid://b5b262sniq43c" path="res://entro/Tile map/IMG_5345.png" id="2_wnut7"]

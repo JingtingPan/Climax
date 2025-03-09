@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://2dvsf2qy7idt"
-path="res://.godot/imported/Slimer.png-cbb47006193f5569bb4e468a51dc97d4.ctex"
+uid="uid://rqcar1gf463m"
+path="res://.godot/imported/IMG_5366.png-4f1609f92e517c445a2d05958b5931df.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://AssetBundle/Sprites/Slimer.png"
-dest_files=["res://.godot/imported/Slimer.png-cbb47006193f5569bb4e468a51dc97d4.ctex"]
+source_file="res://entro/Title screen/IMG_5366.png"
+dest_files=["res://.godot/imported/IMG_5366.png-4f1609f92e517c445a2d05958b5931df.ctex"]
 
 [params]
 
