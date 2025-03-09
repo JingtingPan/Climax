@@ -5,6 +5,7 @@ extends Control
 
 @onready var low_energy = $HBoxContainer/low
 @onready var normal = $HBoxContainer/normal
+@onready var high = $HBoxContainer/high
 var labels = {}  # 存储 Label 引用
 var entropy_level
 func _ready():
@@ -31,11 +32,18 @@ func update_inventory_display():
 	
 	inventory_display.queue_redraw()  # 强制 UI 重新渲染
 func update_status(value: int):
-	if value < 10:  # 当数值低时
+	if value <= 5:  # 当数值低时
 		label.text = "LOW"
 		low_energy.show()
 		normal.hide()
-	else:
-		label.text = "NOMRAL"
+		high.hide()
+	elif value > 5:
+		label.text = "NORMAL"
 		low_energy.hide()
 		normal.show()
+		high.hide()
+	elif value > 8:
+		label.text = "HIGH"
+		low_energy.hide()
+		normal.hide()
+		high.show()
