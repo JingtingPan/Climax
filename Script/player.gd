@@ -9,12 +9,17 @@ extends CharacterBody2D
 @export var climb_speed : float = 100
 
 @onready var ladder_detector = $LadderDetector
+@onready var pink_platforms = ["pink1", "pink2", "pink3"]  # 允许下落的平台名字
 var is_attacked = false 
 var is_falling_through = false
 var is_dashing = false
 var is_climbing = false
 var can_dash = true  # is the player eligible for dashing
 var is_jumping = false
+var s_press_count = 0  # 记录 S 按下的次数
+var s_press_timer = 0.3  # 两次 S 之间的最大间隔（秒）
+
+
 func _ready():
 	z_index = 10  # 设置 Z Index 为 10
 	z_as_relative = true  # 让它在父节点内保持相对顺序
@@ -43,7 +48,7 @@ func apply_gravity(delta: float):
 		
 # left and right movement
 
-		
+####################################################################################################################			
 func handle_movement():
 	if is_dashing:
 		return  # no movement control during dashing
@@ -55,7 +60,7 @@ func handle_movement():
 	else:
 		velocity.x = move_toward(velocity.x, 0, speed)
 
-	
+####################################################################################################################		
 func handle_climbing(delta: float):
 	velocity.x = 0  # no horizontal speed
 	if Input.is_action_pressed("up"):
@@ -84,8 +89,14 @@ func check_ladder_overlap():
 	else:
 		#print("Exited ladder")
 		is_climbing = false			
+
+func disable_ladder_collision():
+	ladder_detector.monitoring = false  # ban ladder detector
+
+func enable_ladder_collision():
+	ladder_detector.monitoring = true  
 	
-	
+####################################################################################################################	
 # jump
 func handle_jump():
 	if is_on_floor() or is_climbing:
@@ -97,11 +108,9 @@ func handle_jump():
 				is_climbing = false
 			await get_tree().create_timer(0.3).timeout  # wait for a while to be able to climb again
 			is_jumping = false  # reset jump state
-func disable_ladder_collision():
-	ladder_detector.monitoring = false  # ban ladder detector
-
-func enable_ladder_collision():
-	ladder_detector.monitoring = true  
+			
+			
+####################################################################################################################
 			
 # dash while in the air
 func handle_dash():
@@ -124,16 +133,40 @@ func stop_dash():
 	is_dashing = false
 	velocity.x = 0  #  stop dash
 
-
-# player pass through platform
+####################################################################################################################
+# player pass through platform by pressing 2 times S
 func handle_platform_pass_through():
-	if Input.is_action_just_pressed("down") and is_on_floor():
-		disable_platform_collision()
-		is_falling_through = true
-		await get_tree().create_timer(0.3).timeout  # restore crashing after 0.3s
-		enable_platform_collision()
-		is_falling_through = false
-		
+	if Input.is_action_just_pressed("down"):
+		s_press_count += 1
+		get_tree().create_timer(s_press_timer).timeout.connect(_reset_s_press_count)  # 计时重置
+		if s_press_count >= 2  and is_on_floor():
+			var floor = get_current_floor()
+			if floor and "pink" in floor.name.to_lower():  # 确保平台名字包含 "pink"
+				disable_platform_collision()
+				is_falling_through = true
+				await get_tree().create_timer(0.3).timeout
+				enable_platform_collision()
+				is_falling_through = false
+
+#s pressed reset			
+func _reset_s_press_count():
+	s_press_count = 0  # 重置 S 计数
+				
+func get_current_floor():
+	# 获取最后一次碰撞的对象（通常是脚下的平台）
+	var last_collision = get_last_slide_collision()
+	if last_collision:
+		return last_collision.get_collider()
+	return null		
+	
+func disable_platform_collision():
+	# turn off collision between player and platform
+	set_collision_mask_value(2, false)  
+
+func enable_platform_collision():
+	# turn off collision between player and platform
+	set_collision_mask_value(2, true)
+####################################################################################################################
 # update players animation
 func update_animation():
 	if is_dashing:
@@ -145,14 +178,8 @@ func update_animation():
 		animator.play("jumpUp" if velocity.y < 0 else "jumpDown")
 	else:
 		animator.play("run" if velocity.x != 0 else "idle")
-			
-func disable_platform_collision():
-	# turn off collision between player and platform
-	set_collision_mask_value(2, false)  
+####################################################################################################################				
 
-func enable_platform_collision():
-	# turn off collision between player and platform
-	set_collision_mask_value(2, true)
 	
 #player engaged with enemy
 func player_attacked():

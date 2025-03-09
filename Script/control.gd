@@ -37,7 +37,7 @@ func update_status(value: int):
 		low_energy.show()
 		normal.hide()
 		high.hide()
-	elif value > 5:
+	elif value > 5 and value <= 8:
 		label.text = "NORMAL"
 		low_energy.hide()
 		normal.show()
