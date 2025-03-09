@@ -73,6 +73,13 @@ shape = SubResource("RectangleShape2D_g6h52")
 sprite_frames = SubResource("SpriteFrames_wb1x5")
 animation = &"fake"
 
+[node name="Label" type="Label" parent="."]
+offset_left = -300.0
+offset_top = -1300.0
+offset_right = -260.0
+offset_bottom = -1277.0
+scale = Vector2(14.625, 14.625)
+
 [node name="Item_Node2D" parent="." node_paths=PackedStringArray("animator") instance=ExtResource("4_5b4ap")]
 scale = Vector2(1, 1)
 animator = NodePath("AnimatedSprite2D")

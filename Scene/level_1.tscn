@@ -1,16 +1,21 @@
-[gd_scene load_steps=15 format=3 uid="uid://noofnu5bsgn7"]
+[gd_scene load_steps=20 format=3 uid="uid://d0lxv88w2dcg6"]
 
-[ext_resource type="Texture2D" uid="uid://bhyse86qlcvit" path="res://entro/Title screen/IMG_5365.png" id="1_7nni1"]
 [ext_resource type="PackedScene" uid="uid://behcq23q1xbhb" path="res://Scene/player.tscn" id="1_exsar"]
-[ext_resource type="PackedScene" path="res://Scene/blue3.tscn" id="2_oiaxu"]
-[ext_resource type="PackedScene" path="res://Scene/blue2.tscn" id="3_agytk"]
-[ext_resource type="PackedScene" path="res://Scene/blue1.tscn" id="4_nnewx"]
-[ext_resource type="PackedScene" uid="uid://dfsqq22ps0pqf" path="res://Scene/ladder.tscn" id="6_5lsay"]
-[ext_resource type="PackedScene" path="res://Scene/pink2.tscn" id="7_3apdd"]
-[ext_resource type="PackedScene" path="res://Scene/key.tscn" id="7_jux5c"]
-[ext_resource type="PackedScene" path="res://Scene/enemy.tscn" id="7_strvs"]
+[ext_resource type="Texture2D" uid="uid://rqcar1gf463m" path="res://entro/Title screen/IMG_5366.png" id="1_u1tlk"]
+[ext_resource type="PackedScene" uid="uid://beeut13evwyd1" path="res://Scene/blue3.tscn" id="2_oiaxu"]
+[ext_resource type="PackedScene" uid="uid://npn4eid3nyxc" path="res://Scene/blue2.tscn" id="3_agytk"]
+[ext_resource type="Script" path="res://Script/boundary.gd" id="3_gpasy"]
+[ext_resource type="PackedScene" uid="uid://c7tikcyvail0l" path="res://Scene/blue1.tscn" id="4_nnewx"]
+[ext_resource type="PackedScene" uid="uid://jtuteyv8qfqo" path="res://Scene/ladder.tscn" id="6_5lsay"]
+[ext_resource type="PackedScene" uid="uid://bb58tf40grmqs" path="res://Scene/pink2.tscn" id="7_3apdd"]
+[ext_resource type="PackedScene" uid="uid://cbahj5xijh67x" path="res://Scene/key.tscn" id="7_jux5c"]
+[ext_resource type="PackedScene" uid="uid://c3cstmmt2qdkk" path="res://Scene/enemy.tscn" id="7_strvs"]
 [ext_resource type="PackedScene" uid="uid://rsmkjpb16ldr" path="res://Scene/exit.tscn" id="10_gfenv"]
-[ext_resource type="PackedScene" path="res://Scene/entropy_timer.tscn" id="11_s0ah4"]
+[ext_resource type="PackedScene" uid="uid://cpfy2t66iv8p" path="res://Scene/entropy_timer.tscn" id="11_s0ah4"]
+[ext_resource type="PackedScene" uid="uid://crty5cx6ihk56" path="res://Scene/door.tscn" id="12_g1bp6"]
+[ext_resource type="PackedScene" uid="uid://dkesqckt5n8vf" path="res://Scene/npc_1.tscn" id="13_c2a4m"]
+[ext_resource type="PackedScene" uid="uid://b2nbjet2jkrfc" path="res://Scene/systemDisplay.tscn" id="14_ofcpl"]
+[ext_resource type="Script" path="res://Script/bgm.gd" id="16_emh5j"]
 
 [sub_resource type="Gradient" id="Gradient_6n8hl"]
 offsets = PackedFloat32Array(0.211039, 0.451299, 0.561688, 0.685065, 0.873377)
@@ -27,11 +32,14 @@ fill_to = Vector2(0.866973, 0.137615)
 [node name="Level1" type="Node2D"]
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(0.404694, 6.2728)
-texture = ExtResource("1_7nni1")
+modulate = Color(0.577008, 0.577008, 0.577008, 1)
+position = Vector2(368, -246)
+scale = Vector2(0.597778, 0.593333)
+texture = ExtResource("1_u1tlk")
 
 [node name="player" parent="." instance=ExtResource("1_exsar")]
 position = Vector2(38.8387, -414.181)
+jump_force = 280.0
 gravity = 800.0
 
 [node name="PointLight2D" type="PointLight2D" parent="player"]
@@ -40,13 +48,19 @@ scale = Vector2(2.23707, 2.1626)
 texture = SubResource("GradientTexture2D_xftkn")
 
 [node name="Camera2D" type="Camera2D" parent="player"]
-zoom = Vector2(3.5, 3.5)
+zoom = Vector2(3, 3)
 process_callback = 0
 position_smoothing_enabled = true
 
 [node name="Floor boundary" type="StaticBody2D" parent="."]
+position = Vector2(118, 59)
+collision_layer = 4
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor boundary"]
+[node name="Area2D" type="Area2D" parent="Floor boundary"]
+script = ExtResource("3_gpasy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor boundary/Area2D"]
+position = Vector2(188, 41)
 shape = SubResource("WorldBoundaryShape2D_krp3n")
 
 [node name="SkyBoundary" type="StaticBody2D" parent="."]
@@ -55,241 +69,6 @@ rotation = 3.14159
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SkyBoundary"]
 shape = SubResource("WorldBoundaryShape2D_krp3n")
-
-[node name="blue3" parent="." instance=ExtResource("2_oiaxu")]
-position = Vector2(15.8391, -482.794)
-
-[node name="blue4" parent="." instance=ExtResource("2_oiaxu")]
-position = Vector2(60.9515, -483.906)
-rotation = 1.5708
-
-[node name="blue2" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(37.7482, -489.45)
-rotation = 3.14159
-
-[node name="blue5" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(39.911, -15.5923)
-
-[node name="blue6" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(60.8563, -15.592)
-
-[node name="blue10" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(81.9494, -15.4823)
-
-[node name="blue11" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(142.131, -15.887)
-
-[node name="blue12" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(163.224, -15.887)
-
-[node name="blue13" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(184.022, -26.6548)
-
-[node name="blue14" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(205.263, -26.6548)
-
-[node name="blue15" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(226.356, -26.6548)
-
-[node name="blue16" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(247.597, -26.6548)
-
-[node name="blue17" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(268.69, -26.6548)
-
-[node name="blue18" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(289.783, -26.6548)
-
-[node name="blue19" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(311.024, -26.6548)
-
-[node name="blue20" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(332.117, -26.6548)
-
-[node name="blue21" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(342.639, -112.855)
-rotation = -1.5708
-
-[node name="blue26" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(348.709, -117)
-rotation = -6.28319
-
-[node name="blue27" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(369.753, -117)
-rotation = -6.28319
-
-[node name="blue28" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(391, -117)
-rotation = -6.28319
-
-[node name="blue29" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(412.132, -117)
-rotation = -6.28319
-
-[node name="blue30" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(433.423, -117)
-rotation = -6.28319
-
-[node name="blue31" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(454.238, -117)
-rotation = -6.28319
-
-[node name="blue32" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(475.529, -117)
-rotation = -6.28319
-
-[node name="blue33" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(496.661, -117)
-rotation = -6.28319
-
-[node name="blue34" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(500.792, -111.746)
-rotation = -4.71239
-
-[node name="blue59" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(559.104, -311.31)
-rotation = -1.5708
-
-[node name="blue60" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(559.104, -332.124)
-rotation = -1.5708
-
-[node name="blue61" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(558.945, -353.064)
-rotation = -1.5708
-
-[node name="blue62" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(575.761, -357.506)
-rotation = -6.28319
-
-[node name="blue63" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(597.018, -357.506)
-rotation = -6.28319
-
-[node name="blue64" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(618.117, -357.506)
-rotation = -6.28319
-
-[node name="blue35" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(517.316, -97.1283)
-rotation = -6.28319
-
-[node name="blue45" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(646.955, -125.254)
-rotation = -6.28319
-
-[node name="blue46" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(641.366, -120.728)
-rotation = -7.85398
-
-[node name="blue47" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(641.366, -99.9961)
-rotation = -7.85398
-
-[node name="blue53" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(713.609, -78.9404)
-rotation = -4.71239
-
-[node name="blue54" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(713.609, -99.27)
-rotation = -4.71239
-
-[node name="blue55" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(713.609, -119.781)
-rotation = -4.71239
-
-[node name="blue56" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(668.049, -125.227)
-rotation = -6.28319
-
-[node name="blue57" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(688.741, -125.227)
-rotation = -6.28319
-
-[node name="blue58" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(709.797, -125.227)
-rotation = -6.28319
-
-[node name="blue48" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(641.508, -79.4063)
-rotation = -7.85398
-
-[node name="blue49" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(645.91, -73.7264)
-rotation = -3.14159
-
-[node name="blue50" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(666.926, -73.8684)
-rotation = -3.14159
-
-[node name="blue51" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(688.083, -74.0104)
-rotation = -3.14159
-
-[node name="blue52" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(707.931, -74.1524)
-rotation = -3.14159
-
-[node name="blue36" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(538.29, -97.1283)
-rotation = -6.28319
-
-[node name="blue22" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(342.639, -92.0135)
-rotation = -1.5708
-
-[node name="blue23" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(353.161, -26.6548)
-rotation = -6.28319
-
-[node name="blue24" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(347.09, -86.3478)
-rotation = 3.14159
-
-[node name="blue25" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(400.308, -86.5501)
-rotation = -3.14159
-
-[node name="blue37" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(421.44, -86.5501)
-rotation = -3.14159
-
-[node name="blue38" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(442.572, -86.5501)
-rotation = -3.14159
-
-[node name="blue39" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(463.387, -86.5501)
-rotation = -3.14159
-
-[node name="blue40" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(484.519, -86.5501)
-rotation = -3.14159
-
-[node name="blue41" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(505.651, -86.5501)
-rotation = -3.14159
-
-[node name="blue42" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(526.624, -86.5501)
-rotation = -3.14159
-
-[node name="blue43" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(526.624, -86.5501)
-rotation = -3.14159
-
-[node name="blue44" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(536.952, -86.5501)
-rotation = -3.14159
-
-[node name="blue7" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(133.639, -149.249)
-
-[node name="blue8" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(154.614, -149.249)
-
-[node name="blue9" parent="." instance=ExtResource("3_agytk")]
-position = Vector2(175.709, -149.249)
 
 [node name="SpawnWallLeft2" type="Node2D" parent="."]
 position = Vector2(10.3539, -152.844)
@@ -592,9 +371,7 @@ color = Color(0.101961, 0.109804, 0.32549, 1)
 polygon = PackedVector2Array(195.89, -154.467, 195.89, -113.018, 206.215, -113.166, 206.068, -102.84, 238.076, -102.398, 237.929, -154.024)
 
 [node name="Ladder" type="Node2D" parent="."]
-
-[node name="ladder" parent="Ladder" instance=ExtResource("6_5lsay")]
-position = Vector2(111.597, -59.8676)
+position = Vector2(-4, 0)
 
 [node name="ladder2" parent="Ladder" instance=ExtResource("6_5lsay")]
 position = Vector2(111.597, -85.61)
@@ -686,8 +463,13 @@ position = Vector2(111.597, -113.844)
 [node name="ladder4" parent="Ladder2" instance=ExtResource("6_5lsay")]
 position = Vector2(111.597, -140.416)
 
+[node name="Tutorial" type="Node" parent="."]
+
 [node name="key" parent="." instance=ExtResource("7_jux5c")]
-position = Vector2(313.857, -281.15)
+position = Vector2(331, -288)
+
+[node name="key5" parent="." instance=ExtResource("7_jux5c")]
+position = Vector2(90, -261)
 
 [node name="key2" parent="." instance=ExtResource("7_jux5c")]
 position = Vector2(377.073, -95.9317)
@@ -701,214 +483,60 @@ position = Vector2(635.297, -257.141)
 [node name="Cloud" type="Node2D" parent="."]
 position = Vector2(-0.25824, -8.00531)
 
-[node name="pink2" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(224.237, -178.346)
-
-[node name="pink3" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(242.044, -179.358)
-
-[node name="pink4" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(237.997, -189.07)
-
-[node name="pink5" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(242.448, -197.569)
-
-[node name="pink6" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(255.399, -190.284)
-
-[node name="pink7" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(259.041, -179.358)
-
 [node name="pink8" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(277.657, -179.358)
-
-[node name="pink9" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(268.956, -190.284)
-
-[node name="pink10" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(260.457, -200.807)
-
-[node name="pink11" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(262.279, -206.472)
+position = Vector2(275.258, -178.995)
 
 [node name="pink12" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(264.1, -215.173)
-
-[node name="pink13" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(270.17, -220.839)
-
-[node name="pink14" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(283.323, -227.314)
-
-[node name="pink19" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(283.323, -227.314)
-
-[node name="pink15" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(298.297, -232.171)
-
-[node name="pink16" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(323.388, -230.957)
-
-[node name="pink20" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(329.661, -234.801)
+position = Vector2(244.258, -216.995)
 
 [node name="pink21" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(345.646, -229.338)
+position = Vector2(384.258, -216.995)
 
 [node name="pink22" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(346.253, -221.446)
+position = Vector2(313.258, -216.995)
 
 [node name="pink23" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(350.503, -213.757)
+position = Vector2(337.258, -216.995)
 
 [node name="pink24" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(358.192, -211.329)
-
-[node name="pink25" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(358.192, -211.329)
-
-[node name="pink26" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(344.635, -179.358)
-
-[node name="pink27" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(348.479, -187.249)
-
-[node name="pink28" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(354.752, -199.188)
-
-[node name="pink35" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(356.776, -220.03)
+position = Vector2(361.258, -216.995)
 
 [node name="pink36" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(339.171, -238.039)
-
-[node name="pink37" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(325.614, -241.883)
-
-[node name="pink38" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(310.033, -244.716)
+position = Vector2(408.258, -216.995)
 
 [node name="pink39" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(294.857, -241.074)
-
-[node name="pink40" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(279.681, -236.015)
-
-[node name="pink41" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(265.719, -230.35)
+position = Vector2(220.258, -216.995)
 
 [node name="pink42" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(256.613, -219.827)
+position = Vector2(267.258, -216.995)
 
 [node name="pink43" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(256.613, -219.827)
-
-[node name="pink44" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(247.507, -208.294)
-
-[node name="pink45" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(284.739, -179.155)
+position = Vector2(290.258, -216.995)
 
 [node name="pink48" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(333.101, -178.548)
-
-[node name="pink49" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(272.801, -240.872)
-
-[node name="pink50" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(276.038, -248.966)
-
-[node name="pink51" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(275.634, -256.048)
-
-[node name="pink52" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(278.871, -265.154)
+position = Vector2(339.258, -178.995)
 
 [node name="pink53" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(293.036, -260.904)
+position = Vector2(296.258, -256.995)
 
 [node name="pink54" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(293.845, -250.989)
+position = Vector2(391.258, -256.995)
 rotation = 0.0409149
 
 [node name="pink55" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(308.414, -250.382)
+position = Vector2(320.258, -256.995)
 rotation = 0.0409149
 
 [node name="pink56" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(308.414, -256.857)
-rotation = 0.0409149
-
-[node name="pink59" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(326.828, -257.262)
-rotation = 0.0409149
-
-[node name="pink61" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(335.124, -249.977)
-rotation = 0.0409149
-
-[node name="pink77" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(330.066, -261.511)
-rotation = 0.156482
-
-[node name="pink76" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(289.596, -267.177)
+position = Vector2(343.258, -256.995)
 rotation = 0.0409149
 
 [node name="pink60" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(326.828, -249.37)
-rotation = 0.0409149
-
-[node name="pink62" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(356.371, -230.957)
-rotation = 0.0409149
-
-[node name="pink63" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(368.31, -207.686)
-rotation = 0.0409149
-
-[node name="pink64" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(380.451, -207.686)
-rotation = 0.0409149
-
-[node name="pink65" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(373.368, -198.581)
-rotation = 0.0409149
-
-[node name="pink66" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(385.105, -198.581)
-rotation = 0.0409149
-
-[node name="pink67" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(366.084, -187.856)
-rotation = 0.0409149
-
-[node name="pink68" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(383.688, -187.452)
-rotation = 0.0409149
-
-[node name="pink69" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(397.65, -187.856)
-rotation = 0.0409149
-
-[node name="pink70" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(406.554, -177.739)
+position = Vector2(415.258, -255.995)
 rotation = 0.0409149
 
 [node name="pink71" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(392.794, -177.739)
-rotation = 0.0409149
-
-[node name="pink72" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(392.794, -177.739)
-rotation = 0.0409149
-
-[node name="pink73" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(365.477, -178.751)
-rotation = 0.0409149
-
-[node name="pink74" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(375.189, -177.132)
+position = Vector2(376.258, -178.995)
 rotation = 0.0409149
 
 [node name="pink75" parent="Cloud" instance=ExtResource("7_3apdd")]
@@ -916,10 +544,7 @@ position = Vector2(418.897, -177.536)
 rotation = 0.0409149
 
 [node name="pink17" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(314.08, -235.813)
-
-[node name="pink18" parent="Cloud" instance=ExtResource("7_3apdd")]
-position = Vector2(269.766, -203.639)
+position = Vector2(367.258, -256.995)
 
 [node name="ExitRock" type="Node2D" parent="."]
 
@@ -1066,19 +691,335 @@ rotation = 1.5708
 color = Color(0.0980392, 0.109804, 0.32549, 1)
 polygon = PackedVector2Array(490.238, -289.395, 490.311, -248.57, 521.591, -248.565, 521.864, -238.039, 532.831, -237.908, 533.135, -196.376, 522.264, -196.497, 522.385, -185.868, 542.918, -185.988, 543.132, -175.681, 575.78, -175.89, 575.937, -186.425, 586.211, -186.425, 586.263, -196.647, 596.641, -196.594, 596.797, -206.92, 606.811, -207.181, 606.883, -289.823, 490.394, -289.5)
 
-[node name="Area2D" parent="ExitRock" instance=ExtResource("7_strvs")]
-position = Vector2(656.872, -157.663)
-
-[node name="Area2D2" parent="ExitRock" instance=ExtResource("7_strvs")]
-position = Vector2(414.008, -150.284)
-
-[node name="Area2D5" parent="ExitRock" instance=ExtResource("7_strvs")]
-position = Vector2(76.2264, -46.3122)
-
-[node name="Area2D4" parent="ExitRock" instance=ExtResource("7_strvs")]
-position = Vector2(254.556, -311.603)
-
 [node name="Exit" parent="." instance=ExtResource("10_gfenv")]
 position = Vector2(603.509, -320.797)
 
 [node name="entropyTimer" parent="." instance=ExtResource("11_s0ah4")]
+
+[node name="grounds" type="Node" parent="."]
+
+[node name="blue3" parent="grounds" instance=ExtResource("2_oiaxu")]
+position = Vector2(15.8391, -482.794)
+
+[node name="blue4" parent="grounds" instance=ExtResource("2_oiaxu")]
+position = Vector2(60.9515, -483.906)
+rotation = 1.5708
+
+[node name="blue2" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(37.7482, -489.45)
+rotation = 3.14159
+
+[node name="blue5" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(39.911, -15.5923)
+
+[node name="blue6" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(60.8563, -15.592)
+
+[node name="blue10" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(81.9494, -15.4823)
+
+[node name="blue11" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(142.131, -15.887)
+
+[node name="blue12" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(163.224, -15.887)
+
+[node name="blue13" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(184.022, -26.6548)
+
+[node name="blue14" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(205.263, -26.6548)
+
+[node name="blue15" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(226.356, -26.6548)
+
+[node name="blue16" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(247.597, -26.6548)
+
+[node name="blue17" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(268.69, -26.6548)
+
+[node name="blue18" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(289.783, -26.6548)
+
+[node name="blue19" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(311.024, -26.6548)
+
+[node name="blue20" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(332.117, -26.6548)
+
+[node name="blue21" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(342.639, -112.855)
+rotation = -1.5708
+
+[node name="blue26" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(348.709, -117)
+
+[node name="blue27" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(369.753, -117)
+
+[node name="blue28" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(391, -117)
+
+[node name="blue29" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(412.132, -117)
+
+[node name="blue30" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(433.423, -117)
+
+[node name="blue31" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(454.238, -117)
+
+[node name="blue32" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(475.529, -117)
+
+[node name="blue33" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(496.661, -117)
+
+[node name="blue34" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(501, -111)
+rotation = 1.5708
+
+[node name="blue59" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(559.104, -311.31)
+rotation = -1.5708
+
+[node name="blue60" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(559.104, -332.124)
+rotation = -1.5708
+
+[node name="blue61" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(558.945, -353.064)
+rotation = -1.5708
+
+[node name="blue62" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(575.761, -357.506)
+
+[node name="blue63" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(597.018, -357.506)
+
+[node name="blue64" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(618.117, -357.506)
+
+[node name="blue35" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(517.316, -97.1283)
+
+[node name="blue45" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(646.955, -125.254)
+
+[node name="blue46" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(641.366, -120.728)
+rotation = -1.57079
+
+[node name="blue47" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(641.366, -99.9961)
+rotation = -1.57079
+
+[node name="blue53" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(713.609, -78.9404)
+rotation = 1.5708
+
+[node name="blue54" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(713.609, -99.27)
+rotation = 1.5708
+
+[node name="blue55" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(713.609, -119.781)
+rotation = 1.5708
+
+[node name="blue56" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(668.049, -125.227)
+
+[node name="blue57" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(688.741, -125.227)
+
+[node name="blue58" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(709.797, -125.227)
+
+[node name="blue48" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(641.508, -79.4063)
+rotation = -1.57079
+
+[node name="blue49" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(645.91, -73.7264)
+rotation = -3.14159
+
+[node name="blue50" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(666.926, -73.8684)
+rotation = -3.14159
+
+[node name="blue51" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(688.083, -74.0104)
+rotation = -3.14159
+
+[node name="blue52" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(707.931, -74.1524)
+rotation = -3.14159
+
+[node name="blue36" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(538.29, -97.1283)
+
+[node name="blue22" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(342.639, -92.0135)
+rotation = -1.5708
+
+[node name="blue23" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(353.161, -26.6548)
+
+[node name="blue24" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(347.09, -86.3478)
+rotation = 3.14159
+
+[node name="blue25" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(400.308, -86.5501)
+rotation = -3.14159
+
+[node name="blue37" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(421.44, -86.5501)
+rotation = -3.14159
+
+[node name="blue38" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(442.572, -86.5501)
+rotation = -3.14159
+
+[node name="blue39" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(463.387, -86.5501)
+rotation = -3.14159
+
+[node name="blue40" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(484.519, -86.5501)
+rotation = -3.14159
+
+[node name="blue41" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(505.651, -86.5501)
+rotation = -3.14159
+
+[node name="blue42" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(526.624, -86.5501)
+rotation = -3.14159
+
+[node name="blue43" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(526.624, -86.5501)
+rotation = -3.14159
+
+[node name="blue44" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(536.952, -86.5501)
+rotation = -3.14159
+
+[node name="blue7" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(133.639, -149.249)
+
+[node name="blue8" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(154.614, -149.249)
+
+[node name="blue9" parent="grounds" instance=ExtResource("3_agytk")]
+position = Vector2(175.709, -149.249)
+
+[node name="enemys" type="Node" parent="."]
+
+[node name="Area2D" parent="enemys" instance=ExtResource("7_strvs")]
+position = Vector2(656.872, -157.663)
+left_boundary = -200.0
+right_boundary = 710.0
+up_boundary = -600.0
+bottom_boundary = 135.0
+is_vectical = true
+
+[node name="Area2D2" parent="enemys" instance=ExtResource("7_strvs")]
+position = Vector2(414.008, -150.284)
+left_boundary = -200.0
+right_boundary = 700.0
+up_boundary = -600.0
+bottom_boundary = 135.0
+
+[node name="Area2D5" parent="enemys" instance=ExtResource("7_strvs")]
+position = Vector2(152, -82)
+left_boundary = -200.0
+right_boundary = 710.0
+up_boundary = -600.0
+bottom_boundary = 135.0
+is_vectical = true
+
+[node name="Area2D4" parent="enemys" instance=ExtResource("7_strvs")]
+position = Vector2(254.556, -311.603)
+left_boundary = -200.0
+right_boundary = 710.0
+up_boundary = -600.0
+bottom_boundary = 135.0
+
+[node name="doors" type="Node" parent="."]
+
+[node name="Door" parent="doors" instance=ExtResource("12_g1bp6")]
+position = Vector2(200, -51)
+memory_name = "home made cookies"
+
+[node name="Door2" parent="doors" instance=ExtResource("12_g1bp6")]
+position = Vector2(163, -173)
+memory_name = "Cookies"
+is_fake = true
+
+[node name="Door3" parent="doors" instance=ExtResource("12_g1bp6")]
+position = Vector2(524, -318)
+memory_name = "my first laptop"
+is_fake = true
+
+[node name="Door4" parent="doors" instance=ExtResource("12_g1bp6")]
+position = Vector2(594, -380)
+memory_name = "my first laptop"
+
+[node name="npc1" parent="." instance=ExtResource("13_c2a4m")]
+position = Vector2(509, -212)
+scale = Vector2(0.015, 0.015)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 24.0
+offset_top = -80.0
+offset_right = 198.0
+offset_bottom = -31.0
+scale = Vector2(0.4, 0.4)
+text = "Press Space to Jump"
+
+[node name="Label3" type="Label" parent="."]
+offset_left = 130.0
+offset_top = -229.0
+offset_right = 306.0
+offset_bottom = -180.0
+scale = Vector2(0.4, 0.4)
+text = "Press E to interact"
+
+[node name="Label4" type="Label" parent="."]
+offset_left = 97.0
+offset_top = -316.0
+offset_right = 359.0
+offset_bottom = -267.0
+scale = Vector2(0.4, 0.4)
+text = "Try what Shift could do here"
+
+[node name="Label5" type="Label" parent="."]
+offset_left = 253.0
+offset_top = -253.0
+offset_right = 552.0
+offset_bottom = -204.0
+scale = Vector2(0.4, 0.4)
+text = "The cloud seems easy to cross through"
+
+[node name="Label6" type="Label" parent="."]
+offset_left = 350.0
+offset_top = -304.0
+offset_right = 649.0
+offset_bottom = -255.0
+scale = Vector2(0.4, 0.4)
+text = "And if you want to go back down
+just double press S"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("14_ofcpl")]
+
+[node name="bgm" type="Node" parent="."]
+script = ExtResource("16_emh5j")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="bgm"]
+volume_db = -5.0
+
+[connection signal="body_entered" from="Floor boundary/Area2D" to="Floor boundary/Area2D" method="_on_body_entered"]

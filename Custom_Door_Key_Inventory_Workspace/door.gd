@@ -10,6 +10,7 @@ extends Area2D
 var player_near: bool = false
 @onready var item_name = $Item_Node2D/Label
 @onready var item = $Item_Node2D
+@onready var notice = $Label
 
 
 # Called when the node enters the scene tree for the first time.
@@ -35,6 +36,7 @@ func _process(delta: float) -> void:
 
 	if player_near and Input.is_action_just_pressed("interact"):
 		if locked and Inventory.inventory_dict["KEYS"] > 0:
+			notice.text = ""
 			if is_fake:
 				$Sprite_Locked_Door.hide()
 				animator.show()
@@ -43,7 +45,13 @@ func _process(delta: float) -> void:
 				queue_free()
 			else:
 				unlock()
+				notice.text = "Gotcha!"
 				Inventory.remove_from_inventory("KEY")
+		else:
+			notice.text = "Not enough key!"
+			await get_tree().create_timer(2).timeout
+			notice.text = ""
+			
 	
 	if $Item_Node2D.collected:
 		#print("Item is collected, freeing it")

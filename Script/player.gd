@@ -7,6 +7,7 @@ extends CharacterBody2D
 @export var dash_duration: float = 0.2
 @export var animator : AnimatedSprite2D
 @export var climb_speed : float = 100
+@export var is_game_over : bool = false
 
 @onready var ladder_detector = $LadderDetector
 @onready var pink_platforms = ["pink1", "pink2", "pink3"]  # 允许下落的平台名字
@@ -50,7 +51,7 @@ func apply_gravity(delta: float):
 
 ####################################################################################################################			
 func handle_movement():
-	if is_dashing:
+	if is_dashing or is_climbing:
 		return  # no movement control during dashing
 		
 	var direction = Input.get_axis("left", "right")
@@ -62,19 +63,21 @@ func handle_movement():
 
 ####################################################################################################################		
 func handle_climbing(delta: float):
-	velocity.x = 0  # no horizontal speed
-	if Input.is_action_pressed("up"):
-		velocity.y = -climb_speed  # climb up
+	var horizontal_direction = Input.get_axis("left", "right")
+	var vertical_direction = Input.get_axis("up", "down")
+
+	# 允许左右移动
+	velocity.x = horizontal_direction * (speed * 0.5)  # 速度降低 50%
+	animator.flip_h = velocity.x < 0 if velocity.x != 0 else animator.flip_h
+
+	# 处理爬梯子的垂直移动
+	if vertical_direction:
+		velocity.y = vertical_direction * climb_speed  # 上下爬
 		if not animator.is_playing() or animator.animation != "climb":
-			animator.play("climb")  
-	elif Input.is_action_pressed("down"):
-		velocity.y = climb_speed  # climb down
-		if not animator.is_playing() or animator.animation != "climb":
-			animator.play("climb")  
+			animator.play("climb")
 	else:
-		velocity.y = 0  # stop climbing
-		if not animator.is_playing() or animator.animation != "climb":
-			animator.stop()
+		velocity.y = 0  # 停止爬梯子
+		animator.stop()
 			
 #check if the player is on another ladder
 func check_ladder_overlap():
@@ -194,3 +197,9 @@ func player_attacked():
 	is_attacked = false
 	animator.play("idle")
 	set_physics_process(true)  # reactivate physics
+	
+	
+func game_over():
+	if not is_game_over:
+		is_game_over = true
+		get_tree().reload_current_scene()

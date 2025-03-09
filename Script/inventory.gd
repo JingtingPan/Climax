@@ -1,7 +1,7 @@
 extends Node2D
 signal status_changed(new_value)
 signal inventory_updated  # **用于通知 UI 更新**
-var inventory_dict = {"KEYS": 1, "MEMORY FRAGMENTS": 0}
+var inventory_dict = {"KEYS": 0, "MEMORY FRAGMENTS": 0}
 var entropyLevel : int = 0
 func add_to_inventory(item_name: String):
 	if item_name.to_upper() == "KEY":

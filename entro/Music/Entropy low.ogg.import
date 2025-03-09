@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://6tl6tmpvv3p"
+path="res://.godot/imported/Entropy low.ogg-5f955de8aea26921bde0eba5cb5ea750.oggvorbisstr"
+
+[deps]
+
+source_file="res://entro/Music/Entropy low.ogg"
+dest_files=["res://.godot/imported/Entropy low.ogg-5f955de8aea26921bde0eba5cb5ea750.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

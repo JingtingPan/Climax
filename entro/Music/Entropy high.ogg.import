@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://cgs25keap0vyr"
+path="res://.godot/imported/Entropy high.ogg-bb74c51ebcf72aa2ba6192133c79b2b9.oggvorbisstr"
+
+[deps]
+
+source_file="res://entro/Music/Entropy high.ogg"
+dest_files=["res://.godot/imported/Entropy high.ogg-bb74c51ebcf72aa2ba6192133c79b2b9.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
