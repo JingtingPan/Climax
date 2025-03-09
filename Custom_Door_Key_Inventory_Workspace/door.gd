@@ -2,10 +2,10 @@ extends Area2D
 
 #default initialization:
 #door is locked, player is not near
+@export var memory_name : String = "HEAVEN"
 @export var locked: bool = true
 var player_near: bool = false
-
-
+@onready var item_name = $Item_Node2D/Label
 @onready var item = $Item_Node2D
 
 
@@ -16,6 +16,7 @@ func _ready() -> void:
 	$Item_Node2D.hide()
 	locked = true
 	player_near = false
+	item_name.text = memory_name
 	
 func unlock():
 	locked = false
