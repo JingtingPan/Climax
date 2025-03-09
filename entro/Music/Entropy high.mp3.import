@@ -3,11 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://b3hshydnusl86"
-valid=false
+path="res://.godot/imported/Entropy high.mp3-94d95202f990e6d5cae575fbda17026c.mp3str"
 
 [deps]
 
 source_file="res://entro/Music/Entropy high.mp3"
+dest_files=["res://.godot/imported/Entropy high.mp3-94d95202f990e6d5cae575fbda17026c.mp3str"]
 
 [params]
 

@@ -3,11 +3,12 @@
 importer="mp3"
 type="AudioStreamMP3"
 uid="uid://bdnaahq02vf7e"
-valid=false
+path="res://.godot/imported/Entropy mid.mp3-bf3853455d3c10530ee8b8c59b39bc51.mp3str"
 
 [deps]
 
 source_file="res://entro/Music/Entropy mid.mp3"
+dest_files=["res://.godot/imported/Entropy mid.mp3-bf3853455d3c10530ee8b8c59b39bc51.mp3str"]
 
 [params]
 

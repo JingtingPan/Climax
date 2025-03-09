@@ -1,17 +1,16 @@
-[gd_scene load_steps=20 format=3 uid="uid://d0lxv88w2dcg6"]
+[gd_scene load_steps=19 format=3 uid="uid://d0lxv88w2dcg6"]
 
 [ext_resource type="PackedScene" uid="uid://behcq23q1xbhb" path="res://Scene/player.tscn" id="1_exsar"]
 [ext_resource type="Texture2D" uid="uid://rqcar1gf463m" path="res://entro/Title screen/IMG_5366.png" id="1_u1tlk"]
-[ext_resource type="PackedScene" uid="uid://beeut13evwyd1" path="res://Scene/blue3.tscn" id="2_oiaxu"]
-[ext_resource type="PackedScene" uid="uid://npn4eid3nyxc" path="res://Scene/blue2.tscn" id="3_agytk"]
+[ext_resource type="PackedScene" path="res://Scene/blue3.tscn" id="2_oiaxu"]
+[ext_resource type="PackedScene" path="res://Scene/blue2.tscn" id="3_agytk"]
 [ext_resource type="Script" path="res://Script/boundary.gd" id="3_gpasy"]
-[ext_resource type="PackedScene" uid="uid://c7tikcyvail0l" path="res://Scene/blue1.tscn" id="4_nnewx"]
-[ext_resource type="PackedScene" uid="uid://jtuteyv8qfqo" path="res://Scene/ladder.tscn" id="6_5lsay"]
+[ext_resource type="PackedScene" path="res://Scene/blue1.tscn" id="4_nnewx"]
+[ext_resource type="PackedScene" uid="uid://dfsqq22ps0pqf" path="res://Scene/ladder.tscn" id="6_5lsay"]
 [ext_resource type="PackedScene" uid="uid://bb58tf40grmqs" path="res://Scene/pink2.tscn" id="7_3apdd"]
-[ext_resource type="PackedScene" uid="uid://cbahj5xijh67x" path="res://Scene/key.tscn" id="7_jux5c"]
-[ext_resource type="PackedScene" uid="uid://c3cstmmt2qdkk" path="res://Scene/enemy.tscn" id="7_strvs"]
+[ext_resource type="PackedScene" path="res://Scene/key.tscn" id="7_jux5c"]
+[ext_resource type="PackedScene" path="res://Scene/enemy.tscn" id="7_strvs"]
 [ext_resource type="PackedScene" uid="uid://rsmkjpb16ldr" path="res://Scene/exit.tscn" id="10_gfenv"]
-[ext_resource type="PackedScene" uid="uid://cpfy2t66iv8p" path="res://Scene/entropy_timer.tscn" id="11_s0ah4"]
 [ext_resource type="PackedScene" uid="uid://crty5cx6ihk56" path="res://Scene/door.tscn" id="12_g1bp6"]
 [ext_resource type="PackedScene" uid="uid://dkesqckt5n8vf" path="res://Scene/npc_1.tscn" id="13_c2a4m"]
 [ext_resource type="PackedScene" uid="uid://b2nbjet2jkrfc" path="res://Scene/systemDisplay.tscn" id="14_ofcpl"]
@@ -693,8 +692,6 @@ polygon = PackedVector2Array(490.238, -289.395, 490.311, -248.57, 521.591, -248.
 
 [node name="Exit" parent="." instance=ExtResource("10_gfenv")]
 position = Vector2(604, -319)
-
-[node name="entropyTimer" parent="." instance=ExtResource("11_s0ah4")]
 
 [node name="grounds" type="Node" parent="."]
 
