@@ -11,7 +11,7 @@
 script/source = "extends Control
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file(\"res://Scene/back_ground.tscn\")
+	get_tree().change_scene_to_file(\"res://Scene/level_1.tscn\")
 	
 
 
