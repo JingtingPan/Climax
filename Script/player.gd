@@ -60,11 +60,11 @@ func handle_climbing(delta: float):
 	if Input.is_action_pressed("up"):
 		velocity.y = -climb_speed  # climb up
 		if not animator.is_playing() or animator.animation != "climb":
-			animator.play("climb")  # 播放攀爬动画
+			animator.play("climb")  
 	elif Input.is_action_pressed("down"):
 		velocity.y = climb_speed  # climb down
 		if not animator.is_playing() or animator.animation != "climb":
-			animator.play("climb")  # 播放攀爬动画
+			animator.play("climb")  
 	else:
 		velocity.y = 0  # stop climbing
 		if not animator.is_playing() or animator.animation != "climb":
@@ -79,9 +79,9 @@ func check_ladder_overlap():
 			break
 	if is_near_ladder and not is_jumping:
 		is_climbing = true
-		print("Entered ladder")
+		#print("Entered ladder")
 	else:
-		print("Exited ladder")
+		#print("Exited ladder")
 		is_climbing = false			
 	
 	
@@ -94,14 +94,13 @@ func handle_jump():
 			is_jumping = true
 			if is_climbing:
 				is_climbing = false
-			await get_tree().create_timer(0.5).timeout  # 等待短暂时间
-			is_jumping = false  # 重置跳跃状态
-
+			await get_tree().create_timer(0.3).timeout  # wait for a while to be able to climb again
+			is_jumping = false  # reset jump state
 func disable_ladder_collision():
-	ladder_detector.monitoring = false  # 禁用梯子检测
+	ladder_detector.monitoring = false  # ban ladder detector
 
 func enable_ladder_collision():
-	ladder_detector.monitoring = true  # 启用梯子检测
+	ladder_detector.monitoring = true  
 			
 # dash while in the air
 func handle_dash():
@@ -111,19 +110,18 @@ func handle_dash():
 # Dash 逻辑
 func start_dash():
 	is_dashing = true
-	can_dash = false  # 只允许空中 Dash 一次
-	velocity.y = 0  # 防止 Dash 期间掉落
-	velocity.x = (-1 if animator.flip_h else 1) * dashSpeed  # Dash 方向
-	animator.play("dash")  # 播放 Dash 动画
+	can_dash = false  # only dash once
+	velocity.y = 0  # prevernt from falling during dash
+	velocity.x = (-1 if animator.flip_h else 1) * dashSpeed  # Dash direction
+	animator.play("dash")  # play dash ani
 	
-	await get_tree().create_timer(dash_duration).timeout  # Dash 持续时间
-	
+	await get_tree().create_timer(dash_duration).timeout  # Dash duration
 	stop_dash()
 
 
 func stop_dash():
 	is_dashing = false
-	velocity.x = 0  # Dash 结束后停止
+	velocity.x = 0  #  stop dash
 
 
 # player pass through platform
@@ -131,7 +129,7 @@ func handle_platform_pass_through():
 	if Input.is_action_just_pressed("down") and is_on_floor():
 		disable_platform_collision()
 		is_falling_through = true
-		await get_tree().create_timer(0.3).timeout  # 0.3秒后恢复碰撞
+		await get_tree().create_timer(0.3).timeout  # restore crashing after 0.3s
 		enable_platform_collision()
 		is_falling_through = false
 		

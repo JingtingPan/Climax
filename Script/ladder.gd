@@ -3,10 +3,10 @@ extends Area2D
 
 func _ready():
 	add_to_group("ladder")
-	print("Ladder added to group: ", self.name)
+	#print("Ladder added to group: ", self.name)
 func _on_body_entered(body: Node2D) -> void:
 	if body is CharacterBody2D:
-		print("enter_ladder")
+		#print("enter_ladder")
 		body.is_climbing = true
 	
 

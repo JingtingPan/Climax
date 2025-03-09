@@ -1,15 +1,12 @@
-extends Node2D
+extends Area2D
 
 #default initialization:
 #door is locked, player is not near
 @export var locked: bool = true
 var player_near: bool = false
 
-var InventoryDisplayScript = preload("res://Custom_Door_Key_Inventory_Workspace/inventory_display_control.gd")
-@onready var inventory_display = $Inventory_Display_Control
 
-var ItemNodeScript = preload("res://Custom_Door_Key_Inventory_Workspace/item_node_2d.gd")
-@onready var item = $Door/Item_Node2D
+@onready var item = $Item_Node2D
 
 
 # Called when the node enters the scene tree for the first time.
@@ -24,28 +21,30 @@ func unlock():
 	locked = false
 	$Sprite_Locked_Door.hide()
 	$Sprite_Opened_Cavity.show()
-	show_item()
-	item.collect()
-	
-
-func show_item():
 	$Item_Node2D.show()
-	await get_tree().create_timer(2).timeout
 	
-#would like some insight on modifying below
-#so that it does not activate for enemies
-func _on_DoorArea_Area2d_body_entered(body):
-	#Insert if statement header such as:
-	#if body.name = player_name
-	player_near = true
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 
-	if player_near and Input.is_action_just_pressed("KEY_Q"):
-		if locked and inventory_display.inventory_dict["KEYS"] > 0:
-			
+	if player_near and Input.is_action_just_pressed("interact"):
+		if locked and Inventory.inventory_dict["KEYS"] > 0:
 			unlock()
-			inventory_display.remove_from_inventory("KEY")
+			Inventory.remove_from_inventory("KEY")
 	
+	if $Item_Node2D.collected:
+		#print("Item is collected, freeing it")
+		queue_free()
+	
+
+#player enters the door
+func _on_body_entered(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		#print("player near door")
+		player_near = true
+		
+#player leaves the door
+func _on_body_exited(body: Node2D) -> void:
+	if body is CharacterBody2D:
+		player_near = false

@@ -1,25 +1,36 @@
 extends Node2D
 
 
-@export var item_name: String
+@export var item_name: String = "MEMORY FRAGMENTS"
 @export var sprite_texture: Texture
 @export var collected: bool
-var InventoryDisplayScript = preload("res://Custom_Door_Key_Inventory_Workspace/inventory_display_control.gd")
-@onready var inventory_display = $Inventory_Display_Control
+@export var animator : AnimatedSprite2D
+@export var float_height: float = 5
+@export var float_speed: float = 2    
+@onready var start_position = global_position  
+var start_y: float
+var door #parent node
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	var sprite = $Sprite_Item
+	door = get_parent()
 	collected = false
+	start_y = global_position.y
 
-
-func collect() -> void:
-	if not collected:
-		inventory_display.add_to_inventory(item_name)
-		collected = true
-		self.hide()
-		
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	if not collected and not door.locked: 
+		door.global_position.y = start_y + sin(Time.get_ticks_msec() * 0.001 * float_speed) * float_height
+		await get_tree().create_timer(0.5).timeout 
+		if Input.is_action_just_pressed("interact"):
+			collect()
+
+func collect() -> void:
+	if not collected:
+		#print("collected")
+		Inventory.add_to_inventory(item_name)
+		animator.play("collect")
+		await get_tree().create_timer(0.6).timeout 
+		collected = true
+	

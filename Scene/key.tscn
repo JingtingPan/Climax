@@ -1,0 +1,82 @@
+[gd_scene load_steps=9 format=3 uid="uid://cbahj5xijh67x"]
+
+[ext_resource type="Script" path="res://Script/key.gd" id="1_bxuoa"]
+[ext_resource type="Texture2D" uid="uid://ckjdibqwhpiip" path="res://entro/keyleft.png" id="2_d7b4y"]
+[ext_resource type="Texture2D" uid="uid://cn50oilodwy23" path="res://entro/Enemies/Death/IMG_5285.png" id="3_qejp5"]
+[ext_resource type="Texture2D" uid="uid://bfdee7udxmk4f" path="res://entro/Enemies/Death/IMG_5286.png" id="4_qsxtk"]
+[ext_resource type="Texture2D" uid="uid://64fhq4v2e70s" path="res://entro/Enemies/Death/IMG_5287.png" id="5_dgkcd"]
+[ext_resource type="Texture2D" uid="uid://civjciup0e00x" path="res://entro/keyrigtht.png" id="6_l2xm8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_oo1jf"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_d7b4y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qejp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qsxtk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dgkcd")
+}],
+"loop": true,
+"name": &"collectL",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_l2xm8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qejp5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qsxtk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dgkcd")
+}],
+"loop": true,
+"name": &"collectR",
+"speed": 6.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_d7b4y")
+}],
+"loop": true,
+"name": &"idleL",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_l2xm8")
+}],
+"loop": true,
+"name": &"idleR",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dtibk"]
+size = Vector2(700, 1000)
+
+[node name="key" type="Area2D" node_paths=PackedStringArray("animator")]
+scale = Vector2(0.02, 0.02)
+collision_layer = 64
+script = ExtResource("1_bxuoa")
+animator = NodePath("AnimatedSprite2D")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_oo1jf")
+animation = &"idleL"
+autoplay = "idleL"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-150, 0)
+shape = SubResource("RectangleShape2D_dtibk")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

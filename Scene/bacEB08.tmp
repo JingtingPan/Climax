@@ -1,0 +1,110 @@
+[gd_scene load_steps=12 format=4 uid="uid://cgn5v438ay7my"]
+
+[ext_resource type="Script" path="res://Scene/back_ground.gd" id="1_7juqd"]
+[ext_resource type="Texture2D" uid="uid://bvsvm7e1kkjdm" path="res://stringstar fields/background_0.png" id="1_eordj"]
+[ext_resource type="PackedScene" uid="uid://behcq23q1xbhb" path="res://Scene/player.tscn" id="2_116po"]
+[ext_resource type="PackedScene" uid="uid://hnvfxbff52lm" path="res://Scene/platform.tscn" id="3_lik8c"]
+[ext_resource type="PackedScene" uid="uid://c3cstmmt2qdkk" path="res://Scene/enemy.tscn" id="4_n0f63"]
+[ext_resource type="PackedScene" uid="uid://jtuteyv8qfqo" path="res://Scene/ladder.tscn" id="5_82auf"]
+[ext_resource type="PackedScene" uid="uid://crty5cx6ihk56" path="res://Scene/door.tscn" id="7_odt2k"]
+[ext_resource type="PackedScene" uid="uid://myw8twx1gpjt" path="res://Scene/inventory.tscn" id="8_ihhft"]
+
+[sub_resource type="Gradient" id="Gradient_6n8hl"]
+offsets = PackedFloat32Array(0.211039, 0.451299, 0.561688, 0.685065, 0.873377)
+colors = PackedColorArray(1, 1, 1, 1, 0.751445, 0.751445, 0.751445, 1, 0.554913, 0.554913, 0.554913, 1, 0.33526, 0.33526, 0.33526, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_weykn"]
+gradient = SubResource("Gradient_6n8hl")
+fill = 1
+fill_from = Vector2(0.502294, 0.527523)
+fill_to = Vector2(0.866973, 0.137615)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_2kvn4"]
+
+[node name="BackGround" type="Node2D"]
+script = ExtResource("1_7juqd")
+
+[node name="bg" type="Sprite2D" parent="."]
+texture = ExtResource("1_eordj")
+metadata/_edit_lock_ = true
+
+[node name="player" parent="." instance=ExtResource("2_116po")]
+gravity = 800.0
+
+[node name="PointLight2D" type="PointLight2D" parent="player"]
+position = Vector2(0, 5)
+texture = SubResource("GradientTexture2D_weykn")
+
+[node name="Camera2D" type="Camera2D" parent="player"]
+zoom = Vector2(4.03, 4.03)
+metadata/_edit_lock_ = true
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 50)
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0.5, 35)
+shape = SubResource("WorldBoundaryShape2D_2kvn4")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+position = Vector2(106, 1)
+rotation = -1.56916
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+position = Vector2(0.5, 35)
+shape = SubResource("WorldBoundaryShape2D_2kvn4")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+position = Vector2(-105, 0)
+rotation = 1.57681
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+position = Vector2(0.5, 35)
+shape = SubResource("WorldBoundaryShape2D_2kvn4")
+
+[node name="StaticBody2D4" type="StaticBody2D" parent="."]
+position = Vector2(0, -46)
+rotation = -3.14143
+collision_layer = 4
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
+position = Vector2(0.5, 35)
+shape = SubResource("WorldBoundaryShape2D_2kvn4")
+
+[node name="TileMapLayer" parent="." instance=ExtResource("3_lik8c")]
+tile_map_data = PackedByteArray("AAD//wEAAAABAAEAAAAAAAEAAAABAAEAAAABAAEAAAABAAEAAAADAAAAAAABAAEAAAAEAAAAAAABAAEAAAAGAAAAAAABAAEAAAAFAAAAAAABAAEAAAD4/wEAAAABAAEAAAD5/wEAAAABAAEAAAD6/wEAAAABAAEAAAD8////AAABAAEAAAD8//7/AAABAAEAAAD8//3/AAABAAEAAAA=")
+
+[node name="enemy" parent="." instance=ExtResource("4_n0f63")]
+position = Vector2(81, -35)
+is_vectical = true
+
+[node name="ladder" parent="." instance=ExtResource("5_82auf")]
+position = Vector2(-30, -18)
+
+[node name="ladder2" parent="." instance=ExtResource("5_82auf")]
+position = Vector2(-30, -44)
+
+[node name="Door" parent="." instance=ExtResource("7_odt2k")]
+position = Vector2(-104, 0)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Inventory_Display_Control" parent="CanvasLayer" instance=ExtResource("8_ihhft")]
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Inventory_Display_Control"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Inventory_Display_Control/HBoxContainer3"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+autowrap_mode = 2

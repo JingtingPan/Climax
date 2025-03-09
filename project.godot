@@ -15,6 +15,14 @@ run/main_scene="res://Scene/back_ground.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Inventory="*res://Custom_Door_Key_Inventory_Workspace/inventory_display_control.gd"
+
+[editor]
+
+version_control/autoload_on_startup=true
+
 [input]
 
 left={
@@ -61,6 +69,7 @@ interact={
 2d_physics/layer_4="enemy"
 2d_physics/layer_5="ladder"
 2d_physics/layer_6="npc"
+2d_physics/layer_7="door"
 
 [rendering]
 
