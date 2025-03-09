@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3q5imvelw1wp"]
+[gd_scene load_steps=5 format=3 uid="uid://b2nbjet2jkrfc"]
 
 [ext_resource type="Script" path="res://Script/control.gd" id="1_r4jlk"]
+[ext_resource type="Texture2D" uid="uid://co2vbwyg4oqn8" path="res://entro/low.png" id="2_rn0gs"]
+[ext_resource type="Texture2D" uid="uid://chlng7teyrxae" path="res://entro/IMG_5348.png" id="3_t48gi"]
+[ext_resource type="Texture2D" uid="uid://c2kw0b21p7nju" path="res://entro/high.png" id="4_c2j0e"]
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -8,3 +11,48 @@ anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("1_r4jlk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 51.0
+offset_bottom = 51.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = 1093.0
+offset_top = 10.0
+offset_right = 1098.0
+offset_bottom = 33.0
+grow_horizontal = 0
+
+[node name="low" type="TextureRect" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("2_rn0gs")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="normal" type="TextureRect" parent="HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("3_t48gi")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="high" type="TextureRect" parent="HBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+texture = ExtResource("4_c2j0e")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 2
