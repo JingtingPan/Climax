@@ -17,6 +17,8 @@ func _ready() -> void:
 	$Sprite_Locked_Door.show()
 	$Sprite_Opened_Cavity.hide()
 	$Item_Node2D.hide()
+	locked = true
+	player_near = false
 	
 func unlock():
 	locked = false
@@ -45,5 +47,5 @@ func _process(delta: float) -> void:
 		if locked and inventory_display.inventory_dict["KEYS"] > 0:
 			
 			unlock()
-			inventory_display.inventory_dict["KEYS"]-= 1
+			inventory_display.remove_from_inventory("KEY")
 	
